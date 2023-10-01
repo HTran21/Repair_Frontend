@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lexend:wght@300;400;500;600;700&display=swap');
+
+.contentLogin {
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0px 7px 29px rgba(91, 220, 237, 0.208);
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+// .contentLogin::before {
+//     content: "";
+//     background-image: url('https://img.freepik.com/free-vector/safari-tour-realistic-illustration_52683-78209.jpg?w=1380&t=st=1695268233~exp=1695268833~hmac=09715ccb14bad019b776569dbe521af0868eba2a2ac8dcd0e790f0d5f2eae175');
+//     background-size: cover;
+//     position: absolute;
+//     top: 0px;
+//     right: 0px;
+//     bottom: 0px;
+//     left: 0px;
+//     opacity: 0.5;
+
+//     border-radius: 10px;
+//     z-index: -1;
+// }
+
+.imgLogin {
+    width: 90%;
+    max-width: 550px;
+    height: auto;
+    margin: auto;
+    z-index: 1;
+    display: flex;
+}
+
+.titleWelcome {
+    width: 250px;
+    padding: 5px;
+    border-radius: 0px 20px 20px 0px;
+    background-color: #1fb3ae30;
+    box-shadow: 0px 7px 29px rgba(188, 245, 245, 0.327);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.titleWelcome:hover {
+    box-shadow:
+        0 0 10px 5px #ffffff90,
+        /* inner white */
+        0 0 15px 5px rgba(55, 231, 231, 0.486),
+        /* middle magenta */
+        0 0 20px 5px rgba(0, 255, 255, 0.505);
+    /* outer cyan */
+}
+
+
+.contentFormLogin {
+    width: 80%;
+}
+
+@media only screen and (max-width: 1200px) {
+    .contentFormLogin {
+        width: 90%;
+    }
+
+}
+
+.formLogin {
+    width: 100%;
+    max-width: 550px;
+    // height: 100%;
+    // height: auto;
+    // width: 370px;
+    margin: 30px auto 30px auto;
+    // backdrop-filter: blur(20px);
+    // background-color: rgba(0, 85, 255, 0.171);
+
+    border-radius: 15px;
+    padding: 5px 20px;
+}
+
+.titleForm {
+    text-align: center;
+}
+
+.logoFrom {
+    width: 70px;
+    margin: 10px 10px 30px 10px;
+    animation: logo-spin infinite 20s linear;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px #cececeef;
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.title {
+    color: #fff;
+    font-size: 26px;
+    font-family: 'Black Ops One', cursive;
+
+}
+
+.desForm {
+    color: #ffffff;
+    padding: 10px;
+}
+
+// Group input
+.groupInput {
+    position: relative;
+    display: grid;
+    grid-template-columns: 30px auto;
+    padding: 10px 0;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #ffffff36;
+
+
+}
+
+
+
+
+.iconInput {
+    padding: 0 12px;
+
+}
+
+.inputForm {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 3px 0px 0px 3px;
+    margin-left: 5px;
+    color: #fff;
+}
+
+.inputForm::placeholder {
+    color: rgba(230, 230, 230, 0.679);
+}
+
+.groupInput2 {
+    position: relative;
+    display: grid;
+    grid-template-columns: 30px auto 30px;
+    padding: 10px 0;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #ffffff36;
+
+}
+
+.iconInput2 {
+    padding: 0 12px;
+    transform: translateY(2px);
+
+}
+
+.inputForm2 {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 3px 0px 0px 3px;
+    margin-left: 5px;
+    color: #fff;
+}
+
+.test2 {
+    position: absolute;
+    right: 12px;
+    top: 9px;
+
+}
+
+.test {
+    position: absolute;
+    right: 12px;
+    top: 9px;
+
+}
+
+.inputForm2::placeholder {
+    color: rgba(230, 230, 230, 0.679);
+}
+
+input[type="password"]~.test {
+    display: none;
+}
+
+input[type="text"]~.test2 {
+    display: none;
+}
+
+
+.btnLogin {
+    background-image: linear-gradient(to right, #2323c5 0%, #1CB5E0 51%, #000046 100%);
+    padding: 12px 10px 10px 10px;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    margin: 30px 0;
+    border: none;
+}
+
+.btnLogin:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+
+.textLink {
+    cursor: pointer;
+    font-weight: 300;
+    color: #97FFF4;
+}
+
+.textError {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 14px;
+    margin: 5px 0px 0px 5px;
+    color: rgb(168, 36, 36);
+}

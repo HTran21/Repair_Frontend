@@ -1,0 +1,240 @@
+.homePage {
+
+    min-height: 90vh;
+}
+
+.contentHomePage {
+    padding: 50px;
+
+}
+
+.titleIntro {
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.desIntro {
+    color: #ffffff;
+    font-weight: 400;
+}
+
+
+
+.btnHomeRepair {
+    background-image: linear-gradient(to right, #E55D87 0%, #5FC3E4 51%, #E55D87 100%);
+    margin: 30px 10px;
+    padding: 10px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 20px;
+    display: block;
+    border: none;
+}
+
+.btnHomeRepair:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.imgHomeRepair {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.itemList {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.imgItem {
+    border-radius: 15px;
+    padding: 20px 0px;
+    margin: 10px 20px;
+    background-color: #c9cfd13d;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.imgItem:hover {
+    transform: scale(1.05);
+}
+
+.homePage2 {
+    min-height: 70vh;
+    background-color: #69ccec0c;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+
+.btnContactRepair {
+    background-image: linear-gradient(to right, #ECE9E6 0%, #FFFFFF 51%, #ECE9E6 100%);
+    margin: 30px 10px;
+    padding: 10px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: rgb(0, 0, 0);
+    box-shadow: 0 0 20px #eee;
+    border-radius: 20px;
+    display: block;
+    border: none;
+}
+
+.btnContactRepair:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #17b5b5;
+    text-decoration: none;
+}
+
+// .problemRepair {}
+
+.problem {
+    min-height: 70px;
+    width: 350px;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.problem:hover {
+    background-color: #3b69be23;
+    transform: scale(1.03);
+}
+
+.phone {
+    background-color: #69ccec0c;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 28px;
+
+}
+
+.imgPhone {
+    cursor: pointer;
+    transition: 0.5;
+}
+
+.imgPhone:hover {
+    transform: scale(1.05);
+    animation-name: trin;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes trin {
+
+    from {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    20%,
+    32%,
+    44%,
+    56%,
+    68% {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    23%,
+    35%,
+    47%,
+    59%,
+    71% {
+        transform: rotate3d(0, 0, 1, 15deg);
+    }
+
+    26%,
+    38%,
+    50%,
+    62%,
+    74% {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    29%,
+    41%,
+    53%,
+    65%,
+    77% {
+        transform: rotate3d(0, 0, 1, -15deg);
+    }
+
+    80% {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+}
+
+.numberPhone {
+    font-size: 30px;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.imgIcon {
+    padding: 10px;
+    width: 45px;
+    margin: 10px;
+    border-radius: 5px;
+    background-image: linear-gradient(#e9eff1d6, #d6f5eadb);
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.imgIcon:hover {
+    background-size: 100% 100%;
+}
+
+.divButton {
+    position: relative;
+}
+
+.line {
+    border-bottom: 1px solid #fff;
+    width: 100%;
+    position: absolute;
+    transform: translateY(30px);
+    z-index: 0;
+}
+
+.buttonSeeMore {
+    background-image: linear-gradient(to right, #83a4d4 0%, #b6fbff 51%, #83a4d4 100%);
+    margin: 10px;
+    padding: 10px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 20px;
+    display: block;
+    border: none;
+    z-index: 1;
+}
+
+.buttonSeeMore:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}

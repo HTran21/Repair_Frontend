@@ -1,0 +1,91 @@
+.adminPage {
+    // min-height: 80vh;
+    background-color: #F2F5FA;
+    // margin: 20px auto;
+    height: 100vh;
+    padding: 0px 10px;
+}
+
+.controlAdmin {
+    // background-color: #1d4ec95b;
+    min-height: 150px;
+    border-radius: 10px 10px 10px 10px;
+    width: 100%;
+    background-color: #fff;
+}
+
+.nofitication {
+    width: 200px;
+    height: 80px;
+    background-color: #016aa6ea;
+    border-radius: 10px;
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: 70px auto;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.nofitication:hover {
+    transform: scale(1.02);
+}
+
+.iconNofitication {
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    background: radial-gradient(#64e4e68b, #de91e5);
+}
+
+.contentNofitication {
+    padding: 10px;
+    color: #fff;
+    font-weight: bold;
+    margin: auto 0;
+}
+
+.listUser {
+    padding: 10px 20px;
+}
+
+.titleUser {
+    font-size: 30px;
+    color: #000000;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.search {
+    max-width: 250px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin: 0 0 20px 0;
+}
+
+.inconSearch {
+    padding: 5px;
+}
+
+.inputSearch {
+    padding: 8px 5px;
+    outline: none;
+    border: none;
+    background-color: #ffffff;
+}
+
+.iconTable {
+    padding: 5px;
+    background-color: #ded6d6;
+    margin: 0 5px;
+    border-radius: 50%;
+}
+
+.iconTable:hover {
+    color: #1941c8;
+    transform: scale(1.03);
+}

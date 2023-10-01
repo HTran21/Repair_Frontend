@@ -1,0 +1,132 @@
+.contentInfo {
+    min-height: 70vh;
+    margin: 30px 0;
+}
+
+.infoUser {
+    padding: 0;
+    max-width: 400px;
+    background-color: #9eb0d76d;
+    text-align: center;
+    border-radius: 10px;
+    height: 450px;
+
+}
+
+
+.imgUser {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 20px auto 10px auto;
+    display: flex;
+}
+
+.nameUser {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.contentInfoUser {
+    margin: 10px 50px;
+    background-color: #1252ac81;
+    padding: 10px 10px 5px 10px;
+    border-radius: 10px;
+}
+
+.groupInput {
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    max-width: 350px;
+    margin-bottom: 10px;
+}
+
+.iconInput {
+    color: #0a378b;
+}
+
+.inputInfo {
+    border: none;
+    padding: 0 10px;
+    background-color: transparent;
+}
+
+
+.btnEdit {
+    background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
+    margin: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 15px;
+    border: none;
+    padding: 7px 25px;
+}
+
+.btnEdit:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.titleList {
+    color: #fff;
+    text-align: center;
+    font-size: 26px;
+}
+
+.search {
+    max-width: 250px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 0 0 20px 0;
+    float: right;
+}
+
+.inconSearch {
+    padding: 5px;
+}
+
+.inputSearch {
+    padding: 8px 5px;
+    outline: none;
+    border: none;
+}
+
+
+.iconTable {
+    padding: 5px;
+    background-color: #ded6d6;
+    margin: 0 5px;
+    border-radius: 50%;
+}
+
+.iconTable:hover {
+    color: #1941c8;
+    transform: scale(1.03);
+}
+
+.iconCheck {
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 50%;
+    color: rgb(33, 187, 33);
+}
+
+.iconError {
+    background-color: #ded7d7;
+    padding: 5px;
+    border-radius: 50%;
+    color: rgb(215, 28, 28);
+    width: 20px;
+    height: 20px;
+
+}

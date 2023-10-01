@@ -1,0 +1,105 @@
+.introAbout {
+    // background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 229, 255, 0.132), rgba(255, 0, 0, 0));
+    height: 400px;
+    position: relative;
+}
+
+.introAbout::before {
+    // background-image: url(https://themeholy.com/wordpress/plumer/wp-content/uploads/2023/04/breadcumb-bg.jpg);
+    // background-size: cover;
+    // content: "";
+    content: "";
+    background-image: url('https://themeholy.com/wordpress/plumer/wp-content/uploads/2023/04/breadcumb-bg.jpg');
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.5;
+}
+
+.contactPage {
+    min-height: 200px;
+
+}
+
+
+.titleIntro {
+    font-weight: 700;
+    // text-align: center;
+    padding-top: 30px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.imgAbout {
+    width: 300px;
+    display: flex;
+    margin: auto;
+}
+
+.tool {
+    width: 40px;
+    margin-top: 30px;
+}
+
+.desAbout {
+    color: #fff;
+    width: 300px;
+}
+
+.infoTeam {
+    // background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgba(0, 229, 255, 0.132), rgba(255, 0, 0, 0));
+    padding: 2px 0 30px 0;
+    background-color: #69ccec0c;
+    border-radius: 20px;
+}
+
+.infoUserTeam {
+    margin: 10px 40px;
+    padding: 5px;
+    background-color: #ffffffbd;
+    border-radius: 10px;
+    box-shadow: rgba(255, 255, 255, 0.553) 0px 8px 24px;
+
+}
+
+.imgTeam {
+    width: 150px;
+    display: flex;
+    margin: auto;
+    transition: 0.5s;
+
+}
+
+.imgTeam:hover {
+    transform: scale(1.05);
+}
+
+.infoUser {
+    cursor: pointer;
+}
+
+.imgHomeRepair {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.address {
+    color: #fff;
+    margin-left: 30px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 30px auto;
+    font-size: 18px;
+
+}
+
+.iconEmail {
+    transform: translateY(1px);
+}

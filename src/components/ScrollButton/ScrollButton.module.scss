@@ -1,0 +1,33 @@
+.buttonToTop {
+    position: fixed;
+    width: 100%;
+    left: 95%;
+    bottom: 40px;
+    height: 20px;
+    font-size: 3rem;
+    z-index: 1;
+    cursor: pointer;
+    color: green;
+}
+
+.bgButton {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    background-image: linear-gradient(#a335d6, #2bbe8b);
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    transition: .4s;
+    cursor: pointer;
+    position: relative;
+}
+
+.bgButton:hover {
+    background-size: 100% 100%;
+}
+
+.iconTop {
+    position: absolute;
+    transform: translate(14px, 10px)
+}

@@ -1,0 +1,161 @@
+.homePage {
+
+    min-height: 80vh;
+}
+
+.contentHomePage {
+    padding: 50px;
+
+}
+
+.titleIntro {
+    font-weight: 700;
+    font-size: 35px;
+}
+
+.desIntro {
+    color: #ffffff;
+    font-weight: 400;
+}
+
+
+
+.btnHomeRepair {
+    background-image: linear-gradient(to right, #E55D87 0%, #5FC3E4 51%, #E55D87 100%);
+    margin: 30px 10px;
+    padding: 10px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 20px;
+    display: block;
+    border: none;
+}
+
+.btnHomeRepair:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+.imgHomeRepair {
+    display: flex;
+    margin: auto;
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formContact {
+    width: 400px;
+    margin: 50px auto;
+    height: 60vh;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 85, 255, 0.171);
+    border-radius: 15px;
+    padding: 5px 20px;
+    box-shadow: rgba(112, 227, 208, 0.35) 0px 10px 15px;
+}
+
+.title {
+    color: #fff;
+    font-size: 26px;
+    font-family: 'Black Ops One', cursive;
+    margin-top: 20px;
+    padding: 0 10px;
+
+
+}
+
+.desForm {
+    color: #ffffff;
+    padding: 10px;
+}
+
+.groupInput {
+    position: relative;
+    display: grid;
+    grid-template-columns: 30px auto;
+    padding: 10px 0;
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #ffffff36;
+
+
+}
+
+.iconInput {
+    padding: 0 12px;
+
+}
+
+.iconInput2 {
+    padding: 0 12px;
+    transform: translateY(1px);
+
+}
+
+.inputForm {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 3px 0px 0px 3px;
+    margin-left: 5px;
+    color: #fff;
+}
+
+.inputForm::placeholder {
+    color: rgba(230, 230, 230, 0.679);
+}
+
+.textArea {
+    width: 350px;
+    border-radius: 10px;
+    margin: 20px 10px;
+    height: 100px;
+    background-color: #ffffff36;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: #fff;
+}
+
+.textArea::placeholder {
+    color: rgba(230, 230, 230, 0.679);
+
+}
+
+
+.btnContact {
+    background-image: linear-gradient(to right, #fc00ff 0%, #00dbde 51%, #fc00ff 100%);
+    margin: 10px;
+    padding: 10px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 20px;
+    display: block;
+    border: none;
+}
+
+.btnContact:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}

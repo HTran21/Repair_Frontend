@@ -1,0 +1,40 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@400;500;600;700;800&display=swap');
+
+
+
+// :root {}
+
+html {
+    font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    // font-family: 'Rowdies', cursive;
+    // font-family: 'Lalezar', cursive;
+    font-family: 'Baloo Chettan 2', cursive;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+    background-image: url('../../../img/background/bg24.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #fff;
+}
+
+footer {
+    font-family: 'Lalezar', cursive;
+
+}

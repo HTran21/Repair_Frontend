@@ -1,0 +1,29 @@
+.imgNotFound {
+    width: 500px;
+    margin: 50px auto 0 auto;
+}
+
+
+.btnBackHome {
+    background-image: linear-gradient(to right, #3245ef 0%, #89fffd 51%, #ef32d9 100%);
+    margin: auto;
+    padding: 15px 40px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 30px;
+    display: block;
+    border: none;
+    font-weight: bold;
+}
+
+
+.btnBackHome:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}

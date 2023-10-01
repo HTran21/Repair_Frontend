@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lexend:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.container2 {
+    display: flex;
+}
+
+main {
+    width: 100%;
+    // padding: 20px;
+}
+
+.sidebar {
+    background: #0169A6;
+    color: #fff;
+    height: 100vh;
+    width: 200px;
+    transition: all 0.5s;
+}
+
+.top_section {
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+    height: 100px;
+}
+
+.logo {
+    font-size: 28px;
+    font-family: 'Black Ops One', cursive;
+}
+
+.bars {
+    display: flex;
+    font-size: 25px;
+}
+
+
+.link {
+    display: flex;
+    color: #fff;
+    padding: 10px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+.link:hover {
+    background: #015787;
+    color: #000;
+    transition: all 0.5s;
+}
+
+.active {
+    background: #015787;
+    color: #000;
+}
+
+.icon,
+.link_text {
+    font-size: 18px;
+    font-family: 'Black Ops One', cursive;
+    color: #fff;
+}
