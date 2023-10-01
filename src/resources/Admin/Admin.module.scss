@@ -1,9 +1,10 @@
 .adminPage {
     // min-height: 80vh;
-    background-color: #F2F5FA;
+    // background-color: #F2F5FA;
     // margin: 20px auto;
-    height: 100vh;
-    padding: 0px 10px;
+    // height: 100vh;
+    padding: 15px 10px;
+
 }
 
 .controlAdmin {
@@ -11,7 +12,8 @@
     min-height: 150px;
     border-radius: 10px 10px 10px 10px;
     width: 100%;
-    background-color: #fff;
+    background-color: #ffffff;
+    margin-left: 0px !important;
 }
 
 .nofitication {
@@ -51,18 +53,22 @@
 
 .listUser {
     padding: 10px 20px;
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 10px;
 }
 
 .titleUser {
     font-size: 30px;
-    color: #000000;
-    font-weight: 500;
+    color: #016aa6ea;
+    font-weight: bold;
     margin: 10px 0;
 }
 
+
 .search {
     max-width: 250px;
-    background-color: #ffffff;
+    background-color: #dfd7d7ac;
     border-radius: 5px;
     margin: 0 0 20px 0;
 }
@@ -75,7 +81,7 @@
     padding: 8px 5px;
     outline: none;
     border: none;
-    background-color: #ffffff;
+    background-color: transparent;
 }
 
 .iconTable {

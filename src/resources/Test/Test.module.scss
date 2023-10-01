@@ -18,3 +18,69 @@
 .btnIcon:hover {
     color: #226bfc;
 }
+
+// Modal
+
+.modal {
+    height: 500px;
+    width: 500px;
+}
+
+
+
+.rightModal {
+    padding: 10px;
+}
+
+.imgModal {
+    max-width: 250px;
+    height: auto;
+    display: flex;
+    margin: auto;
+
+}
+
+.btnEditImage {
+    padding: 5px 10px;
+    margin: auto;
+    display: flex;
+    border-radius: 15px;
+    border: none;
+    background-color: #0B5ED7;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.btnEditImage:hover {
+    transform: scale(1.1);
+}
+
+.group {
+    max-width: 250px;
+    background-color: #e9ddddad;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px auto;
+
+}
+
+.iconInput {
+    padding: 0px 5px;
+    color: #062471;
+    transform: translatey(2px);
+}
+
+.inputGroup {
+    padding: 5px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    width: 80%;
+}
+
+.textAreaGroup {
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    outline: none;
+}

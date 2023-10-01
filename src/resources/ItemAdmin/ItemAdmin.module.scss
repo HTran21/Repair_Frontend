@@ -1,0 +1,145 @@
+// @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Lexend:wght@300;400;500;600;700&display=swap');
+
+.titlePage {
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.title {
+    font-weight: bold;
+    color: #016aa6ea;
+}
+
+.search {
+    max-width: 250px;
+    background-color: #dfd7d7ac;
+    border-radius: 5px;
+    margin: auto 0px;
+}
+
+.inconSearch {
+    padding: 5px;
+}
+
+.inputSearch {
+    padding: 8px 5px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+
+
+.btnAdd {
+    padding: 8px 20px;
+    border-radius: 22px;
+    color: #fff;
+    border: none;
+    background-color: #016aa6b8;
+    font-size: 16px;
+    margin: auto 10px;
+    transition: 0.5s;
+}
+
+.btnAdd:hover {
+    transform: scale(1.1);
+}
+
+.contentPage {
+    min-height: 500px;
+    margin-top: 20px;
+    padding: 20px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+// table
+.imgItem {
+    width: 70px;
+}
+
+.textDesItem {
+    white-space: nowrap;
+    max-width: 40vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: auto;
+}
+
+.btnIcon {
+    border: none;
+    padding: 5px;
+    margin: 0 5px;
+    border-radius: 5px;
+
+}
+
+.btnIcon:hover {
+    color: #226bfc;
+}
+
+// Modal
+.modal {
+    height: 500px;
+    width: 500px;
+}
+
+
+
+.rightModal {
+    padding: 10px;
+}
+
+.imgModal {
+    max-width: 250px;
+    height: auto;
+    display: flex;
+    margin: auto;
+
+}
+
+.btnEditImage {
+    padding: 5px 10px;
+    margin: auto;
+    display: flex;
+    border-radius: 15px;
+    border: none;
+    background-color: #0B5ED7;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.btnEditImage:hover {
+    transform: scale(1.1);
+}
+
+.group {
+    max-width: 250px;
+    background-color: #e9ddddad;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px auto;
+
+}
+
+.iconInput {
+    padding: 0px 5px;
+    color: #062471;
+    transform: translatey(2px);
+}
+
+.inputGroup {
+    padding: 5px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    width: 80%;
+}
+
+.textAreaGroup {
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    outline: none;
+}

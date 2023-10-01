@@ -14,7 +14,7 @@ function Admin() {
     return (
         <div className={`${cx("adminPage")}`}>
             <div className={` row ${cx("controlAdmin")} d-flex justify-content-between`}>
-                <div className="col m-auto p-0">
+                <div className="col m-auto p-0 p-0">
                     <div className={cx("nofitication")}>
                         <div className={cx("iconNofitication")}>
                             <FontAwesomeIcon size="xl" icon={faMessage} />
@@ -26,7 +26,7 @@ function Admin() {
                         </div>
                     </div>
                 </div>
-                <div className="col m-auto">
+                <div className="col m-auto p-0">
                     <div className={cx("nofitication")}>
                         <div className={cx("iconNofitication")}>
                             <FontAwesomeIcon size="xl" icon={faUser} />
@@ -38,7 +38,7 @@ function Admin() {
                         </div>
                     </div>
                 </div>
-                <div className="col m-auto">
+                <div className="col m-auto p-0">
                     <div className={cx("nofitication")}>
                         <div className={cx("iconNofitication")}>
                             <FontAwesomeIcon icon={faScrewdriverWrench} size="xl" />
@@ -50,7 +50,7 @@ function Admin() {
                         </div>
                     </div>
                 </div>
-                <div className="col m-auto">
+                <div className="col m-auto p-0">
                     <div className={cx("nofitication")}>
                         <div className={cx("iconNofitication")}>
                             <FontAwesomeIcon icon={faUserPlus} size="xl" />

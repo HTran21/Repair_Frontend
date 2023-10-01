@@ -20,7 +20,7 @@ function Sidebar({ children }) {
             icon: <FontAwesomeIcon icon={faHouse} style={{ color: "#ffffff", }} />
         },
         {
-            path: "/admin",
+            path: "/itemadmin",
             name: "Item",
             icon: <FontAwesomeIcon icon={faToolbox} style={{ color: "#ffffff", }} />
         },

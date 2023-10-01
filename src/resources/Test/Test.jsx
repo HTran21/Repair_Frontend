@@ -3,13 +3,22 @@ import classNames from 'classnames/bind';
 import styles from './Test.module.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare, faTrash, faTag, faMaximize, faImage } from '@fortawesome/free-solid-svg-icons'
 
 import toast, { Toaster } from 'react-hot-toast';
+
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const cx = classNames.bind(styles);
 
 function Test() {
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const notify = () => toast.success('Successfully created!', {
         duration: 4000,
@@ -88,6 +97,47 @@ function Test() {
 
             <button onClick={notify}>Make me a toast</button>
             <Toaster />
+
+            {/* Modal */}
+            <Button variant="primary" onClick={handleShow}>
+                Launch demo modal
+            </Button>
+
+            <Modal size='lg' show={show} onHide={handleClose}>
+                <form action="">
+                    <Modal.Header closeButton>
+                        <Modal.Title ><h1 className='text-dark m-0'>Edit</h1></Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className={cx("bodyModal")}>
+                        <div className="row">
+                            <div className={`${cx("leftModal")} col-lg-6 col-md-5 col-sm-12`}>
+                                <img className={cx("imgModal")} src="../../../img/item/handWash.png" alt="" />
+                                <div className={cx("group")}>
+                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faImage} /></span>
+                                    <input className={cx("inputGroup")} type="file" name="" id="" placeholder='Tên sản phẩm...' />
+                                </div>
+                            </div>
+                            <div className={`${cx("rightModal")} col-lg-6 col-md-7 col-sm-12`}>
+                                <div className={cx("group")}>
+                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faTag} /></span>
+                                    <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Tên sản phẩm...' />
+                                </div>
+                                <div className={cx("group")}>
+                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faMaximize} /></span>
+                                    <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Kích thước....' />
+                                </div>
+                                <div className={cx("group")}>
+                                    <textarea className={cx("textAreaGroup")} placeholder='Mô tả' name="" id="" cols="27" rows="8"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button size='lg' style={{ fontSize: "18px" }} className={cx("btnClose")} variant="secondary" onClick={handleClose}>Đóng</Button>
+                        <Button size='lg' style={{ fontSize: "18px" }} variant="primary" onClick={handleClose}>Lưu thay đổi</Button>
+                    </Modal.Footer>
+                </form>
+            </Modal>
         </div>
     );
 }
