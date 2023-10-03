@@ -55,8 +55,13 @@ function Login() {
                     toast.error(res.data.error)
                 }
                 else {
-                    toast.success(res.data.message)
-                    // navigate('/home');
+                    // toast.success(res.data.message)
+                    if (res.data.values == 'AD') {
+                        navigate('/admin');
+                    }
+                    else {
+                        navigate('/home');
+                    }
                 }
             })
             .catch(err => console.log(err));
