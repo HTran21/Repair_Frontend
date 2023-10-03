@@ -46,22 +46,24 @@ function Sidebar({ children }) {
     return (
         <div className={cx("container2")}>
             <div style={{ width: isOpen ? "200px" : "50px" }} className={cx("sidebar")}>
-                <div className={cx("top_section")}>
-                    <h1 style={{ display: isOpen ? "block" : "none", transition: "0.5s" }} className={cx("logo")}>REPAIR</h1>
-                    <div style={{ marginLeft: isOpen ? "30px" : "0px", transition: "0.5s" }} className={cx("bars")}>
-                        <FontAwesomeIcon icon={faBars} style={{ color: "#ffffff" }} onClick={toggle} />
+                <div className={cx("heightSidebar")}>
+                    <div className={cx("top_section")}>
+                        <h1 style={{ display: isOpen ? "block" : "none", transition: "0.5s" }} className={cx("logo")}>REPAIR</h1>
+                        <div style={{ marginLeft: isOpen ? "30px" : "0px", transition: "0.5s" }} className={cx("bars")}>
+                            <FontAwesomeIcon icon={faBars} style={{ color: "#ffffff" }} onClick={toggle} />
+                        </div>
                     </div>
+                    {
+                        menuItem.map((item, index) => (
+                            <Link to={item.path} key={index} className={cx("link")}>
+                                <div className={cx("icon")}>{item.icon}</div>
+                                <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>{item.name}</div>
+                            </Link>
+                        ))
+                    }
                 </div>
-                {
-                    menuItem.map((item, index) => (
-                        <Link to={item.path} key={index} className={cx("link")}>
-                            <div className={cx("icon")}>{item.icon}</div>
-                            <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>{item.name}</div>
-                        </Link>
-                    ))
-                }
             </div>
-            <main>{children}</main>
+            <main> {children}</main>
         </div>
     );
 }
