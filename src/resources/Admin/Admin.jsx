@@ -12,7 +12,7 @@ const cx = classNames.bind(styles)
 
 function Admin() {
     return (
-        <div className={`${cx("adminPage")}`}>
+        <div className={`${cx("adminPage")} container`}>
             <div className={` row ${cx("controlAdmin")} d-flex justify-content-between`}>
                 <div className="col m-auto p-0 p-0">
                     <div className={cx("nofitication")}>

@@ -13,6 +13,7 @@ import NotFound from '../resources/PageNotFound/PageNotFound';
 // Admin routes
 import Admin from '../resources/Admin/Admin';
 import IteamAdmin from '../resources/ItemAdmin/ItemAdmin';
+import AddProduct from '../resources/AddProduct/AddProduct';
 
 // Layouts
 import HeaderOnly from '../components/Layouts/HeaderOnly/HeaderOnly';
@@ -30,6 +31,7 @@ const publicRoutes = [
     { path: '/register', component: Register, layout: HeaderOnly },
     { path: '/admin', component: Admin, layout: Sidebar },
     { path: '/itemadmin', component: IteamAdmin, layout: Sidebar },
+    { path: '/itemadmin/add', component: AddProduct, layout: Sidebar },
     { path: '/contact2', component: Contact2, layout: Sidebar },
     { path: '/:slug', component: NotFound, layout: OnlyLayout },
 ]

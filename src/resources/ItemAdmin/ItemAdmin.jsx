@@ -10,6 +10,8 @@ import { Table } from "antd";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import { Link } from "react-router-dom";
+
 const cx = classNames.bind(styles);
 
 function IteamAdmin() {
@@ -127,7 +129,8 @@ function IteamAdmin() {
                     <div className="col m-auto d-flex">
                         <div className="ms-auto">
                             <button className={cx("btnAdd")}><span style={{ fontSize: "18px" }}>Số lượng: 10</span></button>
-                            <button className={cx("btnAdd")}><FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff", padding: "0px 5px 0px 0px" }} /><span style={{ fontSize: "18px" }}>Sản phẩm</span></button>
+                            <Link className="text-decoration-none" to="/itemadmin/add"><button className={cx("btnAdd")}><FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff", padding: "0px 5px 0px 0px" }} />
+                                <span style={{ fontSize: "18px" }}>Sản phẩm</span></button></Link>
                         </div>
                     </div>
                 </div>

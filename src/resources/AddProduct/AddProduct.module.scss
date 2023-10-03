@@ -1,0 +1,90 @@
+.contentPage {
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    // height: 90vh;
+}
+
+.title {
+    font-weight: bold;
+    color: #016aa6ea;
+}
+
+.addImage {
+    border: 1px solid rgba(215, 215, 215, 0.642);
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.frameImg {
+    width: 300px;
+    height: 300px;
+    border: 1px dotted rgb(205, 199, 199);
+    border-radius: 10px;
+
+}
+
+.imgProduct {
+    width: 100%;
+    display: flex;
+    // margin: 70px auto 0px auto;
+}
+
+.group {
+    max-width: 300px;
+    background-color: #e9ddddad;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px 0px;
+
+}
+
+.iconInput {
+    padding: 0px 5px;
+    color: #062471;
+    transform: translatey(2px);
+}
+
+.inputGroup {
+    padding: 5px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    width: 80%;
+}
+
+.textAreaGroup {
+    background-color: transparent;
+    border: none;
+    padding: 5px;
+    outline: none;
+}
+
+.addInfo {
+    border: 1px solid rgba(215, 215, 215, 0.642);
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+
+.btnAddProduct {
+    background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+    border: none;
+    margin-bottom: 4px;
+}
+
+.btnAddProduct:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
