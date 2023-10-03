@@ -43,33 +43,46 @@ function About() {
 
                     <div className={cx("infoTeam")}>
                         <h1 className='text-center '>Thành viên <span><FontAwesomeIcon icon={faUsers} size="sm" style={{ color: "#2adcdf", }} /></span></h1>
-                        <div className="row ms-5 me-5">
-                            <div className={`col ${cx("infoUserTeam")}`}>
-                                <img src='../../../img/avatar/user1.png' className={cx("imgTeam")} />
-                                <div className={cx("infoUser")}>
-                                    <h2 className='text-center text-dark'>Trần Hoàng Trân</h2>
-                                    <h4 className='text-center text-dark'>Tổng Giám Đốc</h4>
+                        <div className="row ms-5 me-5 d-flex">
+                            <div className='col'>
+                                <div className={cx("infoUserTeam")}>
+                                    <img src='../../../img/avatar/user1.png' className={cx("imgTeam")} />
+                                    <div className={cx("infoUser")}>
+                                        <h2 className='text-center text-dark'>Trần Hoàng Trân</h2>
+                                        <h4 className='text-center text-dark'>Tổng Giám Đốc</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className={`col`}>
+                                <div className={cx("infoUserTeam")}>
+                                    <img src='../../../img/avatar/user2.png' className={cx("imgTeam")} />
+                                    <div className={cx("infoUser")}>
+                                        <h2 className='text-center text-dark'>Trần Hoàng Trân</h2>
+                                        <h4 className='text-center text-dark'>Tổng Giám Đốc</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className='col'>
+                                <div className={cx("infoUserTeam")}>
+                                    <img src='../../../img/avatar/user3.png' className={cx("imgTeam")} />
+                                    <div className={cx("infoUser")}>
+                                        <h2 className='text-center text-dark'>Trần Hoàng Trân</h2>
+
+                                        <h4 className='text-center text-dark'>Tổng Giám Đốc</h4>
+                                    </div>
                                 </div>
                             </div>
-                            <div className={`col ${cx("infoUserTeam")}`}>
-                                <img src='../../../img/avatar/user2.png' className={cx("imgTeam")} />
-                                <div className={cx("infoUser")}>
-                                    <h2 className='text-center text-dark'>Trần Hoàng Trân</h2>
-                                    <h4 className='text-center text-dark'>Tổng Giám Đốc</h4>
+                            <div className='col'>
+                                <div className={cx("infoUserTeam")}>
+                                    <img src='../../../img/avatar/user4.png' className={cx("imgTeam")} />
+                                    <div className={cx("infoUser")}>
+                                        <h2 className='text-center text-dark'>Trần Hoàng Trân</h2>
+                                        <h4 className='text-center text-dark'>Tổng Giám Đốc</h4>
+                                    </div>
                                 </div>
-                            </div><div className={`col ${cx("infoUserTeam")}`}>
-                                <img src='../../../img/avatar/user3.png' className={cx("imgTeam")} />
-                                <div className={cx("infoUser")}>
-                                    <h2 className='text-center text-dark'>Trần Hoàng Trân</h2>
 
-                                    <h4 className='text-center text-dark'>Tổng Giám Đốc</h4>
-                                </div>
-                            </div><div className={`col ${cx("infoUserTeam")}`}>
-                                <img src='../../../img/avatar/user4.png' className={cx("imgTeam")} />
-                                <div className={cx("infoUser")}>
-                                    <h2 className='text-center text-dark'>Trần Hoàng Trân</h2>
-                                    <h4 className='text-center text-dark'>Tổng Giám Đốc</h4>
-                                </div>
                             </div>
                         </div>
                     </div>

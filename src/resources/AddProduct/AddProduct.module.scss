@@ -2,7 +2,7 @@
     padding: 10px 20px;
     background-color: #fff;
     border-radius: 10px;
-    // height: 90vh;
+    height: 95vh;
 }
 
 .title {
@@ -17,8 +17,8 @@
 }
 
 .frameImg {
-    width: 300px;
-    height: 300px;
+    width: 301px;
+    height: 301px;
     border: 1px dotted rgb(205, 199, 199);
     border-radius: 10px;
 
@@ -28,6 +28,7 @@
     width: 100%;
     display: flex;
     // margin: 70px auto 0px auto;
+    border-radius: 10px;
 }
 
 .group {
@@ -79,7 +80,7 @@
     border-radius: 10px;
     display: block;
     border: none;
-    margin-bottom: 4px;
+    margin: 10px 0px 0px 0px;
 }
 
 .btnAddProduct:hover {

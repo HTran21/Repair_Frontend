@@ -4,7 +4,7 @@ import styles from "./AddProduct.module.scss";
 import { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faPlus, faTrash, faPenToSquare, faImage, faTag, faMaximize, faToolbox } from '@fortawesome/free-solid-svg-icons';
+import { faImage, faTag, faMaximize, faFillDrip, faRecycle } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -28,7 +28,7 @@ function AddProduct() {
                 <div className="row">
                     <div className="col">
                         <div className={cx("addImage")}>
-                            <h2>Add Image</h2>
+                            <h2 className="mt-2 mb-3">Hình ảnh sản phẩm</h2>
                             {
                                 imageUpload && (
                                     <div className={cx("frameImg")}>
@@ -36,7 +36,7 @@ function AddProduct() {
                                     </div>
                                 )
                             }
-                            <div className={cx("group")}>
+                            <div className={`${cx("group")} mt-4 mb-3`}>
                                 <span><FontAwesomeIcon className={cx("iconInput")} icon={faImage} /></span>
                                 <input className={cx("inputGroup")} onChange={onImageChange} accept="image/jpeg, image/png, image/jpg" type="file" name="" />
                             </div>
@@ -44,19 +44,29 @@ function AddProduct() {
                     </div>
                     <div className="col">
                         <div className={cx("addInfo")}>
+                            <h2 className="mt-2 mb-3">Thông tin sản phẩm</h2>
                             <div className={cx("group")}>
                                 <span><FontAwesomeIcon className={cx("iconInput")} icon={faTag} /></span>
                                 <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Tên sản phẩm...' />
                             </div>
                             <div className={cx("group")}>
                                 <span><FontAwesomeIcon className={cx("iconInput")} icon={faMaximize} /></span>
-                                <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Kích thước....' />
+                                <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Kích thước...' />
                             </div>
                             <div className={cx("group")}>
+                                <span><FontAwesomeIcon className={cx("iconInput")} icon={faFillDrip} /></span>
+                                <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Màu sắc...' />
+                            </div>
+                            <div className={cx("group")}>
+                                <span><FontAwesomeIcon className={cx("iconInput")} icon={faRecycle} /></span>
+                                <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Chất liệu...' />
+                            </div>
+                            <div className={`${cx("group")} mb-1`}>
                                 <textarea className={cx("textAreaGroup")} placeholder='Mô tả' name="" id="" cols="30" rows="8"></textarea>
                             </div>
-                            <button className={cx("btnAddProduct")}>Thêm sản phẩm</button>
+
                         </div>
+                        <button className={`${cx("btnAddProduct")} ms-auto`}>Thêm sản phẩm</button>
                     </div>
                 </div>
             </div>

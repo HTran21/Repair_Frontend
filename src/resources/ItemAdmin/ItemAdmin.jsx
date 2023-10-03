@@ -3,7 +3,7 @@ import styles from "./ItemAdmin.module.scss";
 import { useState } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faPlus, faTrash, faPenToSquare, faImage, faTag, faMaximize, faToolbox } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faPlus, faTrash, faPenToSquare, faImage, faTag, faMaximize, faCircleInfo, faFillDrip, faRecycle } from '@fortawesome/free-solid-svg-icons';
 
 import { Table } from "antd";
 
@@ -78,6 +78,7 @@ function IteamAdmin() {
                     <>
                         <button className={cx("btnIcon")}><FontAwesomeIcon icon={faPenToSquare} onClick={handleShow} /></button>
                         <button className={cx("btnIcon")}><FontAwesomeIcon icon={faTrash} /></button>
+                        <Link to={"/product"}><button className={cx("btnIcon")}><FontAwesomeIcon icon={faCircleInfo} /></button></Link>
                     </>
                 )
             }
@@ -163,6 +164,14 @@ function IteamAdmin() {
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faMaximize} /></span>
                                     <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Kích thước....' />
+                                </div>
+                                <div className={cx("group")}>
+                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faFillDrip} /></span>
+                                    <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Màu sắc...' />
+                                </div>
+                                <div className={cx("group")}>
+                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faRecycle} /></span>
+                                    <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Chất liệu...' />
                                 </div>
                                 <div className={cx("group")}>
                                     <textarea className={cx("textAreaGroup")} placeholder='Mô tả' name="" id="" cols="27" rows="8"></textarea>

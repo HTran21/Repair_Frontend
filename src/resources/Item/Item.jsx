@@ -34,8 +34,8 @@ function Item() {
                             <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
 
                             <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Toilet</div>
-                                <div className={cx("desItem")}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, inventore?</div>
+                                <div className={cx("nameItem")}>Tolet</div>
+
                             </div>
 
                         </div>
@@ -43,8 +43,8 @@ function Item() {
                             <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
 
                             <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Toilet</div>
-                                <div className={cx("desItem")}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, inventore?</div>
+                                <div className={cx("nameItem")}>Tolet</div>
+
                             </div>
 
                         </div>
@@ -52,8 +52,8 @@ function Item() {
                             <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
 
                             <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Toilet</div>
-                                <div className={cx("desItem")}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, inventore?</div>
+                                <div className={cx("nameItem")}>Tolet</div>
+
                             </div>
 
                         </div>
@@ -61,8 +61,8 @@ function Item() {
                             <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
 
                             <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Toilet</div>
-                                <div className={cx("desItem")}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, inventore?</div>
+                                <div className={cx("nameItem")}>Tolet</div>
+
                             </div>
 
                         </div>
@@ -70,12 +70,20 @@ function Item() {
                             <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
 
                             <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Toilet</div>
-                                <div className={cx("desItem")}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, inventore?</div>
+                                <div className={cx("nameItem")}>Tolet</div>
+
                             </div>
 
                         </div>
+                        <div className={`${cx("item")}`}>
+                            <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
 
+                            <div className={cx("contentItem")}>
+                                <div className={cx("nameItem")}>Tolet</div>
+
+                            </div>
+
+                        </div>
 
                     </div>
                 </div>

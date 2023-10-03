@@ -9,6 +9,7 @@ import Test from '../resources/Test/Test';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Contact2 from '../resources/Admin/Contact2';
 import NotFound from '../resources/PageNotFound/PageNotFound';
+import Product from '../resources/Product/Product';
 
 // Admin routes
 import Admin from '../resources/Admin/Admin';
@@ -29,6 +30,10 @@ const publicRoutes = [
     { path: '/test', component: Test },
     { path: '/login', component: Login, layout: HeaderOnly },
     { path: '/register', component: Register, layout: HeaderOnly },
+    { path: '/product', component: Product },
+
+
+    // Admin routes
     { path: '/admin', component: Admin, layout: Sidebar },
     { path: '/itemadmin', component: IteamAdmin, layout: Sidebar },
     { path: '/itemadmin/add', component: AddProduct, layout: Sidebar },
