@@ -117,7 +117,7 @@ function IteamAdmin() {
     ];
 
     return (
-        <div className="container vh-100">
+        <div className="container min-vh-100">
             <div className={`${cx("titlePage")} mt-4`}>
                 <h1 className={cx("title")}>Product List</h1>
                 <div className="row">
@@ -185,7 +185,7 @@ function IteamAdmin() {
                     </Modal.Footer>
                 </form>
             </Modal>
-        </div>
+        </div >
 
     );
 }

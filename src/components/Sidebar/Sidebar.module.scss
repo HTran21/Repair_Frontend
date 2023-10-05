@@ -25,6 +25,7 @@ main {
     height: auto;
     width: 200px;
     transition: all 0.5s;
+    position: relative;
 }
 
 
@@ -81,4 +82,24 @@ main {
     font-size: 18px;
     font-family: 'Black Ops One', cursive;
     color: #fff;
+}
+
+
+.link2 {
+    display: flex;
+    color: #fff;
+    padding: 10px 15px;
+    gap: 15px;
+    transition: all 0.5s;
+    text-decoration: none;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px solid rgb(19, 66, 168);
+}
+
+.link2:hover {
+    background: #015787;
+    color: #000;
+    transition: all 0.5s;
 }

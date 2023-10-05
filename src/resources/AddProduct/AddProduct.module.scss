@@ -2,7 +2,7 @@
     padding: 10px 20px;
     background-color: #fff;
     border-radius: 10px;
-    min-height: 95vh;
+    min-height: 100vh;
 }
 
 .title {
@@ -88,4 +88,16 @@
     /* change the direction of the change here */
     color: #fff;
     text-decoration: none;
+}
+
+@media (max-width: 720px) {
+    .addImage>* {
+        display: flex;
+        margin: auto;
+    }
+
+    .addInfo>* {
+        display: flex;
+        margin: 10px auto;
+    }
 }
