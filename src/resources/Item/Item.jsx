@@ -1,10 +1,13 @@
 import classNames from 'classnames/bind';
 import styles from './Item.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faPlus, faTrash, faPenToSquare, faImage, faTag, faMaximize, faCircleInfo, faFillDrip, faRecycle } from '@fortawesome/free-solid-svg-icons';
 
 
 const cx = classNames.bind(styles);
@@ -12,6 +15,14 @@ const cx = classNames.bind(styles);
 function Item() {
 
     const [data, setData] = useState();
+    const [show, setShow] = useState(false);
+
+    const [recordView, setRecordView] = useState();
+
+    const handleView = (item) => {
+        setShow(true)
+        setRecordView(item)
+    }
 
     useEffect(() => {
         fetch('http://localhost:3000/product')
@@ -21,8 +32,8 @@ function Item() {
             })
     }, [])
 
-    console.log(data)
-
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <div>
@@ -44,66 +55,65 @@ function Item() {
                 <div className={`${cx("contentListItem")}`}>
                     <div className={cx("items")}>
 
-                        {data?.map((item, i) => <h1 key={i}>{item.nameItem}</h1>)}
+                        {data?.map((item, i) =>
+                            <div onClick={() => handleView(item)} className={`${cx("item")}`} key={i}>
+                                <img className={cx("imgItem")} src={`http://localhost:3000/${item.imageItem}`} />
 
-                        <div className={`${cx("item")}`}>
-                            <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
+                                <div className={cx("contentItem")}>
+                                    <div className={cx("nameItem")}>{item.nameItem}</div>
 
-                            <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Tolet</div>
-
-                            </div>
-
-                        </div>
-                        {/* <div className={`${cx("item")}`}>
-                            <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
-
-                            <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Tolet</div>
+                                </div>
 
                             </div>
 
-                        </div>
-                        <div className={`${cx("item")}`}>
-                            <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
-
-                            <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Tolet</div>
-
-                            </div>
-
-                        </div>
-                        <div className={`${cx("item")}`}>
-                            <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
-
-                            <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Tolet</div>
-
-                            </div>
-
-                        </div>
-                        <div className={`${cx("item")}`}>
-                            <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
-
-                            <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Tolet</div>
-
-                            </div>
-
-                        </div>
-                        <div className={`${cx("item")}`}>
-                            <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
-
-                            <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Tolet</div>
-
-                            </div>
-
-                        </div> */}
+                        )}
 
                     </div>
                 </div>
             </div>
+            <Modal size='lg' show={show} onHide={handleClose}>
+                <form action="" encType="multipart/form-data">
+                    <Modal.Header closeButton>
+                        <Modal.Title ><h1 className='text-dark m-0'>Thông tin chi tiết</h1></Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className={cx("bodyModal")}>
+                        <div className="row">
+                            <div className={`${cx("leftModal")} col-lg-6 col-md-5 col-sm-12`}>
+                                <img className={cx("imgModal")} src={`http://localhost:3000/${recordView?.imageItem}`} alt="" />
+                            </div>
+                            <div className={`${cx("rightModal")} col-lg-6 col-md-7 col-sm-12`}>
+                                <div className={cx("group")}>
+                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faTag} /></span>
+                                    <input className={cx("inputGroup")} type="text" disabled defaultValue={recordView?.nameItem}
+                                        name="nameItem" id="" placeholder='Tên sản phẩm...' />
+                                </div>
+                                <div className={cx("group")}>
+                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faMaximize} /></span>
+                                    <input className={cx("inputGroup")} type="text" disabled defaultValue={recordView?.sizeItem}
+                                        name="sizeItem" id="" placeholder='Kích thước....' />
+                                </div>
+                                <div className={cx("group")}>
+                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faFillDrip} /></span>
+                                    <input className={cx("inputGroup")} type="text" disabled defaultValue={recordView?.colorItem}
+                                        name="colorItem" id="" placeholder='Màu sắc...' />
+                                </div>
+                                <div className={cx("group")}>
+                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faRecycle} /></span>
+                                    <input className={cx("inputGroup")} type="text" disabled defaultValue={recordView?.chatlieu}
+                                        name="chatlieu" id="" placeholder='Chất liệu...' />
+                                </div>
+                                <div className={cx("group")}>
+                                    <textarea className={cx("textAreaGroup")} placeholder='Mô tả' disabled defaultValue={recordView?.desItem}
+                                        name="desItem" id="" cols="27" rows="8"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button size='lg' style={{ fontSize: "16px" }} className={cx("btnClose")} variant="secondary" onClick={handleClose}>Đóng</Button>
+                    </Modal.Footer>
+                </form>
+            </Modal>
 
         </div>
     );

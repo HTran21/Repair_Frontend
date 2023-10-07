@@ -143,51 +143,49 @@ function IteamAdmin() {
                 </div>
             </div>
             <Modal size='lg' show={show} onHide={handleClose}>
-                <form action="" encType="multipart/form-data">
-                    <Modal.Header closeButton>
-                        <Modal.Title ><h1 className='text-dark m-0'>Thông tin chi tiết</h1></Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body className={cx("bodyModal")}>
-                        <div className="row">
-                            {/* <h1 className="text-dark">?????? : {recordView?.nameItem}</h1> */}
+                <Modal.Header closeButton>
+                    <Modal.Title ><h1 className='text-dark m-0'>Thông tin chi tiết</h1></Modal.Title>
+                </Modal.Header>
+                <Modal.Body className={cx("bodyModal")}>
+                    <div className="row">
+                        {/* <h1 className="text-dark">?????? : {recordView?.nameItem}</h1> */}
 
-                            <div className={`${cx("leftModal")} col-lg-6 col-md-5 col-sm-12`}>
-                                <img className={cx("imgModal")} src={`http://localhost:3000/${recordView?.imageItem}`} alt="" />
-                            </div>
-                            <div className={`${cx("rightModal")} col-lg-6 col-md-7 col-sm-12`}>
-                                <div className={cx("group")}>
-                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faTag} /></span>
-                                    {/* <input className={cx("inputGroup")} type="text" value={recordView?.nameItem || ""} onChange={e => setRecordView(e.target.value)}
+                        <div className={`${cx("leftModal")} col-lg-6 col-md-5 col-sm-12`}>
+                            <img className={cx("imgModal")} src={`http://localhost:3000/${recordView?.imageItem}`} alt="" />
+                        </div>
+                        <div className={`${cx("rightModal")} col-lg-6 col-md-7 col-sm-12`}>
+                            <div className={cx("group")}>
+                                <span><FontAwesomeIcon className={cx("iconInput")} icon={faTag} /></span>
+                                {/* <input className={cx("inputGroup")} type="text" value={recordView?.nameItem || ""} onChange={e => setRecordView(e.target.value)}
                                         name="nameItem" id="" placeholder='Tên sản phẩm...' /> */}
-                                    <input className={cx("inputGroup")} type="text" value={recordView?.nameItem}
-                                        onChange={e => setNameItem(e.target.value)} name="nameItem" id="" placeholder='Tên sản phẩm...' />
-                                </div>
-                                <div className={cx("group")}>
-                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faMaximize} /></span>
-                                    <input className={cx("inputGroup")} type="text" value={recordView?.sizeItem}
-                                        onChange={e => setSizeItem(e.target.value)} name="sizeItem" id="" placeholder='Kích thước....' />
-                                </div>
-                                <div className={cx("group")}>
-                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faFillDrip} /></span>
-                                    <input className={cx("inputGroup")} type="text" value={recordView?.colorItem}
-                                        onChange={e => setColor(e.target.value)} name="colorItem" id="" placeholder='Màu sắc...' />
-                                </div>
-                                <div className={cx("group")}>
-                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faRecycle} /></span>
-                                    <input className={cx("inputGroup")} type="text" value={recordView?.chatlieu}
-                                        onChange={e => setChatLieu(e.target.value)} name="chatlieu" id="" placeholder='Chất liệu...' />
-                                </div>
-                                <div className={cx("group")}>
-                                    <textarea className={cx("textAreaGroup")} placeholder='Mô tả' value={recordView?.desItem}
-                                        onChange={e => setDesItem(e.target.value)} name="desItem" id="" cols="27" rows="8"></textarea>
-                                </div>
+                                <input className={cx("inputGroup")} type="text" value={recordView?.nameItem}
+                                    onChange={e => setNameItem(e.target.value)} name="nameItem" id="" placeholder='Tên sản phẩm...' />
+                            </div>
+                            <div className={cx("group")}>
+                                <span><FontAwesomeIcon className={cx("iconInput")} icon={faMaximize} /></span>
+                                <input className={cx("inputGroup")} type="text" value={recordView?.sizeItem}
+                                    onChange={e => setSizeItem(e.target.value)} name="sizeItem" id="" placeholder='Kích thước....' />
+                            </div>
+                            <div className={cx("group")}>
+                                <span><FontAwesomeIcon className={cx("iconInput")} icon={faFillDrip} /></span>
+                                <input className={cx("inputGroup")} type="text" value={recordView?.colorItem}
+                                    onChange={e => setColor(e.target.value)} name="colorItem" id="" placeholder='Màu sắc...' />
+                            </div>
+                            <div className={cx("group")}>
+                                <span><FontAwesomeIcon className={cx("iconInput")} icon={faRecycle} /></span>
+                                <input className={cx("inputGroup")} type="text" value={recordView?.chatlieu}
+                                    onChange={e => setChatLieu(e.target.value)} name="chatlieu" id="" placeholder='Chất liệu...' />
+                            </div>
+                            <div className={cx("group")}>
+                                <textarea className={cx("textAreaGroup")} placeholder='Mô tả' value={recordView?.desItem}
+                                    onChange={e => setDesItem(e.target.value)} name="desItem" id="" cols="27" rows="8"></textarea>
                             </div>
                         </div>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button size='lg' style={{ fontSize: "16px" }} className={cx("btnClose")} variant="secondary" onClick={handleClose}>Đóng</Button>
-                    </Modal.Footer>
-                </form>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button size='lg' style={{ fontSize: "16px" }} className={cx("btnClose")} variant="secondary" onClick={handleClose}>Đóng</Button>
+                </Modal.Footer>
             </Modal>
         </div >
 
