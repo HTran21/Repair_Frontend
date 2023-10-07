@@ -70,11 +70,12 @@ function AddProduct() {
         formData.append('desItem', desItem)
         axios.post('http://localhost:3000/product/add', formData)
             .then(res => {
-                if (res.data.error) {
-                    toast.error(res.data.error);
-                } else {
-                    toast.success(res.data.message);
-                }
+                console.log(res)
+                // if (res.data.error) {
+                //     toast.error(res.data.error);
+                // } else {
+                //     toast.success(res.data.message);
+                // }
             })
             .catch(er => console.log(er))
     }
@@ -140,7 +141,7 @@ function AddProduct() {
                                 </div>
 
                             </div>
-                            <button type="button" onClick={upload} className={`${cx("btnAddProduct")} ms-auto`}>Thêm sản phẩm</button>
+                            <button type="button" onClick={upload} className={`${cx("btnAddProduct")} ms-auto`}>Thêm thiết bị</button>
                         </div>
                     </div>
                 </form>

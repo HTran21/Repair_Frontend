@@ -3,11 +3,25 @@ import styles from './Item.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 
 const cx = classNames.bind(styles);
 
 function Item() {
 
+    const [data, setData] = useState();
+
+    useEffect(() => {
+        fetch('http://localhost:3000/product')
+            .then(res => res.json())
+            .then(data => {
+                setData(data);
+            })
+    }, [])
+
+    console.log(data)
 
 
     return (
@@ -30,7 +44,18 @@ function Item() {
                 <div className={`${cx("contentListItem")}`}>
                     <div className={cx("items")}>
 
+                        {data?.map((item, i) => <h1 key={i}>{item.nameItem}</h1>)}
+
                         <div className={`${cx("item")}`}>
+                            <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
+
+                            <div className={cx("contentItem")}>
+                                <div className={cx("nameItem")}>Tolet</div>
+
+                            </div>
+
+                        </div>
+                        {/* <div className={`${cx("item")}`}>
                             <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
 
                             <div className={cx("contentItem")}>
@@ -74,16 +99,7 @@ function Item() {
 
                             </div>
 
-                        </div>
-                        <div className={`${cx("item")}`}>
-                            <img className={cx("imgItem")} src='../../../img/item/toilet.png' />
-
-                            <div className={cx("contentItem")}>
-                                <div className={cx("nameItem")}>Tolet</div>
-
-                            </div>
-
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>

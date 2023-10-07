@@ -70,25 +70,25 @@ function UpdateItem() {
 
 
 
-    // const upload = () => {
+    const upload = () => {
 
-    //     const formData = new FormData()
-    //     // formData.append('file', file)
-    //     formData.append('nameItem', nameItem)
-    //     formData.append('sizeItem', sizeItem)
-    //     formData.append('colorItem', colorItem)
-    //     formData.append('chatlieu', chatlieu)
-    //     formData.append('desItem', desItem)
-    //     axios.put('http://localhost:3000/product/update/' + id, formData)
-    //         .then(res => {
-    //             if (res.data.error) {
-    //                 toast.error(res.data.error);
-    //             } else {
-    //                 toast.success(res.data.message);
-    //             }
-    //         })
-    //         .catch(er => console.log(er))
-    // }
+        const formData = new FormData()
+        formData.append('file', file)
+        formData.append('nameItem', nameItem)
+        formData.append('sizeItem', sizeItem)
+        formData.append('colorItem', colorItem)
+        formData.append('chatlieu', chatlieu)
+        formData.append('desItem', desItem)
+        axios.put('http://localhost:3000/product/update/' + id, formData)
+            .then(res => {
+                if (res.data.error) {
+                    toast.error(res.data.error);
+                } else {
+                    toast.success(res.data.message);
+                }
+            })
+            .catch(er => console.log(er))
+    }
 
     // const upload = (event) => {
     //     event.preventDefault();
@@ -98,46 +98,52 @@ function UpdateItem() {
     //         }).catch(err => console.log(err))
     // }
 
-    const upload = (e) => {
-        e.preventDefault()
-        const formData = new FormData();
-        formData.append('nameItem', nameItem);
+    // const upload = async (e) => {
+    //     e.preventDefault()
+    //     // console.log("nameitem", nameItem)
+    //     const formData = new FormData();
+    //     formData.append('nameItem', nameItem);
 
-        axios.put('http://localhost:3000/product/update/' + id, formData)
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => console.log(err));
-    }
+    //     for (var pair of formData.entries()) {
+    //         console.log(pair[0] + ', ' + pair[1]);
+    //     }
 
-
+    //     await axios.put('http://localhost:3000/product/update/' + id, formData)
+    //         .then(res => {
+    //             console.log(res)
+    //         })
+    //         .catch(err => console.log(err));
+    // }
 
     return (
         <div className="container">
+
             <div className={`${cx("contentPage")} mt-4`}>
                 <h1 className={cx("title")}>Edit Product</h1>
-                <form action="" encType="multipart/form-data">
+                <form action="">
                     <div className="row">
                         <div className="col mt-1">
                             <div className={cx("addImage")}>
                                 <h2 className="mt-2 mb-3">Hình ảnh sản phẩm</h2>
                                 {
                                     imageUpload && (
-                                        <div className={cx("frameImg")}>
+                                        <label htmlFor="uploadImage" className={cx("frameImg")}>
                                             <img className={cx("imgProduct")} src={imageUpload} alt="" id="imageDefault" />
-                                        </div>
+                                        </label>
                                     )
                                 }
                                 <div className={`${cx("group")} mt-4 mb-3`}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faImage} /></span>
-                                    <input className={cx("inputGroup")} accept="image/jpeg, image/png, image/jpg" type="file" name="imageItem"
-                                        defaultValue={imageItem} onChange={(e) => {
+                                    <input id="uploadImage" className={cx("inputGroup", 'd-none')} accept="image/jpeg, image/png, image/jpg" type="file" name="imageItem"
+                                        defaultValue={imageItem || ""} onChange={(e) => {
                                             if (e.target.files && e.target.files[0]) {
                                                 setImageUpload(URL.createObjectURL(e.target.files[0]));
 
                                             }
                                             setFile(e.target.files[0])
+                                            setImageItem(e.target.files[0].name)
                                         }} />
+                                    <input className={cx("inputGroup")} disabled type="text" defaultValue={imageItem || ''} name="" id="" />
                                 </div>
                             </div>
                         </div>
@@ -147,30 +153,30 @@ function UpdateItem() {
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faTag} /></span>
                                     <input className={cx("inputGroup")} type="text" name="nameItem"
-                                        value={nameItem} onChange={e => setNameItem(e.target.value)} id="" placeholder='Tên sản phẩm...' />
+                                        value={nameItem || ""} onChange={e => setNameItem(e.target.value)} id="" placeholder='Tên sản phẩm...' />
                                 </div>
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faMaximize} /></span>
                                     <input className={cx("inputGroup")} type="text" name="sizeItem"
-                                        defaultValue={sizeItem} onChange={e => setSizeItem(e.target.defaultValue)} id="" placeholder='Kích thước...' />
+                                        value={sizeItem || ''} onChange={e => setSizeItem(e.target.value)} id="" placeholder='Kích thước...' />
                                 </div>
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faFillDrip} /></span>
                                     <input className={cx("inputGroup")} type="text"
-                                        defaultValue={colorItem} onChange={e => setColorItem(e.target.defaultValue)} name="colorItem" id="" placeholder='Màu sắc...' />
+                                        value={colorItem || ''} onChange={e => setColorItem(e.target.value)} name="colorItem" id="" placeholder='Màu sắc...' />
                                 </div>
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faRecycle} /></span>
                                     <input className={cx("inputGroup")} type="text" name="chatlieu"
-                                        defaultValue={chatlieu} onChange={e => setChatLieu(e.target.defaultValue)} id="" placeholder='Chất liệu...' />
+                                        value={chatlieu || ''} onChange={e => setChatLieu(e.target.value)} id="" placeholder='Chất liệu...' />
                                 </div>
                                 <div className={`${cx("group")} mb-1`}>
                                     <textarea className={cx("textAreaGroup")} placeholder='Mô tả cơ sở vật chất' name="desItem"
-                                        defaultValue={desItem} onChange={e => setDesItem(e.target.defaultValue)} id="" cols="30" rows="8" spellCheck="false" ></textarea>
+                                        value={desItem || ''} onChange={e => setDesItem(e.target.value)} id="" cols="30" rows="8" spellCheck="false" ></textarea>
                                 </div>
 
                             </div>
-                            <button type="button" onClick={upload} className={`${cx("btnAddProduct")} ms-auto`}>Thêm sản phẩm</button>
+                            <button type="button" onClick={upload} className={`${cx("btnAddProduct")} ms-auto`}>Cập nhật thiết bị</button>
                         </div>
                     </div>
                 </form>
