@@ -40,6 +40,7 @@
     font-size: 16px;
     margin: auto 10px;
     transition: 0.5s;
+    margin-bottom: 5px;
 }
 
 .btnAdd:hover {
@@ -47,7 +48,7 @@
 }
 
 .contentPage {
-    min-height: 500px;
+    min-height: 550px;
     margin-top: 20px;
     padding: 20px 20px;
     background-color: #fff;
@@ -85,7 +86,11 @@
     width: 500px;
 }
 
-
+.leftModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .rightModal {
     padding: 10px;
@@ -94,8 +99,6 @@
 .imgModal {
     max-width: 250px;
     height: auto;
-    display: flex;
-    margin: auto;
 
 }
 

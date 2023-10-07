@@ -15,6 +15,7 @@ import Product from '../resources/Product/Product';
 import Admin from '../resources/Admin/Admin';
 import IteamAdmin from '../resources/ItemAdmin/ItemAdmin';
 import AddProduct from '../resources/AddProduct/AddProduct';
+import UpdateItem from '../resources/UpdateItem/UpdateItem';
 
 // Layouts
 import HeaderOnly from '../components/Layouts/HeaderOnly/HeaderOnly';
@@ -38,6 +39,7 @@ const publicRoutes = [
     { path: '/itemadmin', component: IteamAdmin, layout: Sidebar },
     { path: '/itemadmin/add', component: AddProduct, layout: Sidebar },
     { path: '/contact2', component: Contact2, layout: Sidebar },
+    { path: '/updateitem/:id', component: UpdateItem, layout: Sidebar },
     { path: '/:slug', component: NotFound, layout: OnlyLayout },
 ]
 

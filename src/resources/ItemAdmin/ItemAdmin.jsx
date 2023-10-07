@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./ItemAdmin.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faPlus, faTrash, faPenToSquare, faImage, faTag, faMaximize, faCircleInfo, faFillDrip, faRecycle } from '@fortawesome/free-solid-svg-icons';
@@ -12,38 +12,47 @@ import Modal from 'react-bootstrap/Modal';
 
 import { Link } from "react-router-dom";
 
+import axios from "axios";
+
 const cx = classNames.bind(styles);
 
 function IteamAdmin() {
 
     const [show, setShow] = useState(false);
+    const [recordView, setRecordView] = useState(null);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const handleView = (data) => {
+        setShow(true)
+        setRecordView(data)
+    }
+
     const columns = [
         {
             title: 'STT',
-            dataIndex: 'key',
+            dataIndex: 'ID_item',
             key: 'id',
+            render: (text, object, index) => { return index + 1 },
             defaultSortOrder: 'ascend',
             sorter: (a, b) => a.key - b.key,
             align: 'center',
         },
         {
             title: 'Tên thiết bị',
-            dataIndex: 'name',
-            key: 'name',
+            dataIndex: 'nameItem',
+            key: 'nameItem',
             align: 'center'
         },
         {
             title: 'Hình ảnh',
-            dataIndex: 'image',
-            key: 'image',
-            render: (image) => {
+            dataIndex: 'imageItem',
+            key: 'imageItem',
+            render: (imageItem) => {
                 return (
                     <>
-                        <img className={cx("imgItem")} src={image} alt="" />
+                        <img className={cx("imgItem")} src={`http://localhost:3000/${imageItem}`} alt="" />
                     </>
                 )
             },
@@ -51,15 +60,15 @@ function IteamAdmin() {
         },
         {
             title: 'Kích thước',
-            dataIndex: 'size',
-            key: 'size',
+            dataIndex: 'sizeItem',
+            key: 'sizeItem',
             align: 'center',
 
         },
         {
             title: 'Mô tả',
-            dataIndex: 'des',
-            key: 'des',
+            dataIndex: 'desItem',
+            key: 'desItem',
             render: (des) => {
                 return (
                     <>
@@ -76,45 +85,29 @@ function IteamAdmin() {
             render: (record) => {
                 return (
                     <>
-                        <button className={cx("btnIcon")}><FontAwesomeIcon icon={faPenToSquare} onClick={handleShow} /></button>
+                        <Link to={`/updateitem/${record.ID_item}`}> <button className={cx("btnIcon")}><FontAwesomeIcon icon={faPenToSquare} /></button></Link>
                         <button className={cx("btnIcon")}><FontAwesomeIcon icon={faTrash} /></button>
-                        <Link to={"/product"}><button className={cx("btnIcon")}><FontAwesomeIcon icon={faCircleInfo} /></button></Link>
+                        <button className={cx("btnIcon")}><FontAwesomeIcon icon={faCircleInfo} onClick={() => handleView(record)} /></button>
                     </>
                 )
             }
         },
     ];
 
-    const data = [
-        {
-            key: '1',
-            name: 'Bồn cầu',
-            image: '../../../img/item/toilet.png',
-            size: '80cm x 100cm',
-            des: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quos amet optio iusto maiores deleniti nulla delectus est esse quo!',
-        },
-        {
-            key: '2',
-            name: 'Chậu rửa mặt',
-            image: '../../../img/item/handWash.png',
-            size: '80cm x 100cm',
-            des: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quos amet optio iusto maiores deleniti nulla delectus est esse quo!',
-        },
-        {
-            key: '3',
-            name: 'Router wifi',
-            image: '../../../img/item/router.png',
-            size: '80cm x 100cm',
-            des: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quos amet optio iusto maiores deleniti nulla delectus est esse quo!',
-        },
-        {
-            key: '4',
-            name: 'Quạt',
-            image: '../../../img/item/wallFan.png',
-            size: '80cm x 100cm',
-            des: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quos amet optio iusto maiores deleniti nulla delectus est esse quo!',
-        }
-    ];
+    const [data, setData] = useState();
+    const [totalPages, setTotalPages] = useState(1);
+
+
+    useEffect(() => {
+        fetch('http://localhost:3000/product')
+            .then(res => res.json())
+            .then(data => {
+                setData(data);
+                setTotalPages(data.totalPages);
+            })
+            .catch(err => console.log(err))
+    }, [])
+
 
     return (
         <div className="container min-vh-100">
@@ -129,7 +122,7 @@ function IteamAdmin() {
                     </div>
                     <div className="col m-auto d-flex">
                         <div className="ms-auto">
-                            <button className={cx("btnAdd")}><span style={{ fontSize: "18px" }}>Số lượng: 10</span></button>
+                            <button className={cx("btnAdd")}><span style={{ fontSize: "18px" }}>Số lượng: {data?.length}</span></button>
                             <Link className="text-decoration-none" to="/itemadmin/add"><button className={cx("btnAdd")}><FontAwesomeIcon icon={faPlus} style={{ color: "#ffffff", padding: "0px 5px 0px 0px" }} />
                                 <span style={{ fontSize: "18px" }}>Sản phẩm</span></button></Link>
                         </div>
@@ -139,49 +132,60 @@ function IteamAdmin() {
             </div>
             <div className={cx("contentPage")}>
                 <div className="table-responsive">
-                    <Table columns={columns} dataSource={data} />
+                    <Table
+                        rowKey="ID_item"
+                        columns={columns}
+                        dataSource={data}
+                        pagination={{
+                            pageSize: 4,
+                            total: totalPages,
+                        }} />
                 </div>
             </div>
             <Modal size='lg' show={show} onHide={handleClose}>
-                <form action="">
+                <form action="" encType="multipart/form-data">
                     <Modal.Header closeButton>
-                        <Modal.Title ><h1 className='text-dark m-0'>Edit</h1></Modal.Title>
+                        <Modal.Title ><h1 className='text-dark m-0'>Thông tin chi tiết</h1></Modal.Title>
                     </Modal.Header>
                     <Modal.Body className={cx("bodyModal")}>
                         <div className="row">
+                            {/* <h1 className="text-dark">?????? : {recordView?.nameItem}</h1> */}
+
                             <div className={`${cx("leftModal")} col-lg-6 col-md-5 col-sm-12`}>
-                                <img className={cx("imgModal")} src="../../../img/item/handWash.png" alt="" />
-                                <div className={cx("group")}>
-                                    <span><FontAwesomeIcon className={cx("iconInput")} icon={faImage} /></span>
-                                    <input className={cx("inputGroup")} type="file" name="" id="" placeholder='Tên sản phẩm...' />
-                                </div>
+                                <img className={cx("imgModal")} src={`http://localhost:3000/${recordView?.imageItem}`} alt="" />
                             </div>
                             <div className={`${cx("rightModal")} col-lg-6 col-md-7 col-sm-12`}>
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faTag} /></span>
-                                    <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Tên sản phẩm...' />
+                                    {/* <input className={cx("inputGroup")} type="text" value={recordView?.nameItem || ""} onChange={e => setRecordView(e.target.value)}
+                                        name="nameItem" id="" placeholder='Tên sản phẩm...' /> */}
+                                    <input className={cx("inputGroup")} type="text" value={recordView?.nameItem}
+                                        onChange={e => setNameItem(e.target.value)} name="nameItem" id="" placeholder='Tên sản phẩm...' />
                                 </div>
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faMaximize} /></span>
-                                    <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Kích thước....' />
+                                    <input className={cx("inputGroup")} type="text" value={recordView?.sizeItem}
+                                        onChange={e => setSizeItem(e.target.value)} name="sizeItem" id="" placeholder='Kích thước....' />
                                 </div>
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faFillDrip} /></span>
-                                    <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Màu sắc...' />
+                                    <input className={cx("inputGroup")} type="text" value={recordView?.colorItem}
+                                        onChange={e => setColor(e.target.value)} name="colorItem" id="" placeholder='Màu sắc...' />
                                 </div>
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faRecycle} /></span>
-                                    <input className={cx("inputGroup")} type="text" name="" id="" placeholder='Chất liệu...' />
+                                    <input className={cx("inputGroup")} type="text" value={recordView?.chatlieu}
+                                        onChange={e => setChatLieu(e.target.value)} name="chatlieu" id="" placeholder='Chất liệu...' />
                                 </div>
                                 <div className={cx("group")}>
-                                    <textarea className={cx("textAreaGroup")} placeholder='Mô tả' name="" id="" cols="27" rows="8"></textarea>
+                                    <textarea className={cx("textAreaGroup")} placeholder='Mô tả' value={recordView?.desItem}
+                                        onChange={e => setDesItem(e.target.value)} name="desItem" id="" cols="27" rows="8"></textarea>
                                 </div>
                             </div>
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button size='lg' style={{ fontSize: "16px" }} className={cx("btnClose")} variant="secondary" onClick={handleClose}>Đóng</Button>
-                        <Button size='lg' style={{ fontSize: "16px" }} variant="primary" onClick={handleClose}>Lưu thay đổi</Button>
                     </Modal.Footer>
                 </form>
             </Modal>
