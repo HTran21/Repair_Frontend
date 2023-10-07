@@ -33,7 +33,7 @@ function Item() {
     }, [])
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
 
     return (
         <div>
