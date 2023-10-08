@@ -2,7 +2,7 @@
     // min-height: 80vh;
     // background-color: #F2F5FA;
     // margin: 20px auto;
-    height: 100vh;
+    // height: 100vh;
     padding: 15px 10px;
 
 }
@@ -56,6 +56,8 @@
     background-color: #fff;
     margin-top: 20px;
     border-radius: 10px;
+    min-height: 550px;
+
 }
 
 .titleUser {
@@ -89,9 +91,14 @@
     background-color: #ded6d6;
     margin: 0 5px;
     border-radius: 50%;
+    border: none;
 }
 
 .iconTable:hover {
     color: #1941c8;
     transform: scale(1.03);
+}
+
+.tableUser {
+    height: auto;
 }

@@ -140,6 +140,16 @@ function IteamAdmin() {
         fetchData();
     }, [])
 
+    const [pagination, setPagination] = useState({});
+
+    function handleTableChange() {
+
+        requestToServer().then((data) => {
+            pagination.total = your_value;
+            setPagination(pagination);
+        })
+    }
+
 
 
 
@@ -171,9 +181,11 @@ function IteamAdmin() {
                         columns={columns}
                         dataSource={data}
                         pagination={{
-                            pageSize: 4,
-                            total: totalPages,
-                        }} />
+                            defaultPageSize: 5,
+                            showSizeChanger: true,
+                            pageSizeOptions: ['5', '10', '15']
+                        }}
+                        onChange={handleTableChange} />
                 </div>
             </div>
             <Modal size='lg' show={show} onHide={handleClose}>
