@@ -40,13 +40,14 @@ function Register() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3000/register/adduser', values)
+        axios.post('http://localhost:3000/authentication/adduser', values)
             .then(res => {
                 if (res.data.error) {
                     toast.error(res.data.error)
                 }
                 else {
                     navigate('/login')
+
                 }
 
             })

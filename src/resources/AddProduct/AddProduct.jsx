@@ -17,7 +17,6 @@ function AddProduct() {
     const [imageUpload, setImageUpload] = useState("../../../img/icon/imageIcon.png")
 
 
-
     // const [values, setValues] = useState({
     //     imageItem: '',
     //     nameItem: '',
@@ -71,14 +70,21 @@ function AddProduct() {
         axios.post('http://localhost:3000/product/add', formData)
             .then(res => {
                 console.log(res)
-                // if (res.data.error) {
-                //     toast.error(res.data.error);
-                // } else {
-                //     toast.success(res.data.message);
-                // }
+                if (res.data.error) {
+                    toast.error(res.data.error);
+                } else {
+                    toast.success(res.data.message);
+                    setNameItem('');
+                    setSizeItem('');
+                    setColorItem('');
+                    setChatLieu('');
+                    setDesItem('');
+                    setImageUpload("../../../img/icon/imageIcon.png");
+                }
             })
             .catch(er => console.log(er))
     }
+
 
     // console.log(imageItem);
     return (
@@ -118,26 +124,26 @@ function AddProduct() {
                                     <input className={cx("inputGroup")} type="text" name="nameItem"
                                         onChange={e =>
                                             setNameItem(e.target.value)
-                                        } value={nameItem} id="" placeholder='Tên sản phẩm...' />
+                                        } value={nameItem || ''} id="" placeholder='Tên sản phẩm...' />
                                 </div>
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faMaximize} /></span>
-                                    <input className={cx("inputGroup")} type="text" name="sizeItem"
-                                        onChange={e => setSizeItem(e.target.value)} value={sizeItem} id="" placeholder='Kích thước...' />
+                                    <input className={cx("inputGroup")} type="text" name="sizeItem" required
+                                        onChange={e => setSizeItem(e.target.value)} value={sizeItem || ''} id="" placeholder='Kích thước...' />
                                 </div>
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faFillDrip} /></span>
-                                    <input className={cx("inputGroup")} type="text" value={colorItem}
+                                    <input className={cx("inputGroup")} type="text" value={colorItem || ''} required
                                         onChange={e => setColorItem(e.target.value)} name="colorItem" id="" placeholder='Màu sắc...' />
                                 </div>
                                 <div className={cx("group")}>
                                     <span><FontAwesomeIcon className={cx("iconInput")} icon={faRecycle} /></span>
-                                    <input className={cx("inputGroup")} type="text" name="chatlieu"
-                                        onChange={e => setChatLieu(e.target.value)} value={chatlieu} id="" placeholder='Chất liệu...' />
+                                    <input className={cx("inputGroup")} type="text" name="chatlieu" required
+                                        onChange={e => setChatLieu(e.target.value)} value={chatlieu || ''} id="" placeholder='Chất liệu...' />
                                 </div>
                                 <div className={`${cx("group")} mb-1`}>
-                                    <textarea className={cx("textAreaGroup")} placeholder='Mô tả cơ sở vật chất' name="desItem"
-                                        onChange={e => setDesItem(e.target.value)} id="" cols="30" rows="8" spellCheck="false" value={desItem}></textarea>
+                                    <textarea className={cx("textAreaGroup")} placeholder='Mô tả cơ sở vật chất' name="desItem" required
+                                        onChange={e => setDesItem(e.target.value)} id="" cols="30" rows="8" spellCheck="false" value={desItem || ''}></textarea>
                                 </div>
 
                             </div>

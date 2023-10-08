@@ -49,7 +49,7 @@ function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3000/login', values)
+        axios.post('http://localhost:3000/authentication/login', values)
             .then(res => {
                 if (res.data.error) {
                     toast.error(res.data.error)

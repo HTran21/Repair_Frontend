@@ -13,15 +13,20 @@ import Modal from 'react-bootstrap/Modal';
 import { Link } from "react-router-dom";
 
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const cx = classNames.bind(styles);
 
 function IteamAdmin() {
 
     const [show, setShow] = useState(false);
+    const [show2, setShow2] = useState(false);
     const [recordView, setRecordView] = useState(null);
+    const [recordView2, setRecordView2] = useState(null);
 
     const handleClose = () => setShow(false);
+    const handleClose2 = () => setShow2(false);
+
     const handleShow = () => setShow(true);
 
     const handleView = (data) => {
@@ -29,20 +34,43 @@ function IteamAdmin() {
         setRecordView(data)
     }
 
+    const handleView2 = (data) => {
+        setShow2(true)
+        setRecordView2(data)
+    }
+
+    // Delete item
+    const handleDelete = (id) => {
+        if (id) {
+            axios.delete('http://localhost:3000/product/delete', { data: { id: id } })
+                .then(res => {
+                    toast.success(res.data.message);
+                    handleClose2(true);
+                    fetchData();
+                })
+                .catch(err => console.log(err));
+        }
+
+
+
+    }
+
     const columns = [
         {
             title: 'STT',
             dataIndex: 'ID_item',
             key: 'id',
-            render: (text, object, index) => { return index + 1 },
             defaultSortOrder: 'ascend',
-            sorter: (a, b) => a.key - b.key,
+            sorter: (a, b) => a.ID_item - b.ID_item,
+            render: (text, object, index) => { return index + 1 },
             align: 'center',
         },
         {
             title: 'Tên thiết bị',
             dataIndex: 'nameItem',
             key: 'nameItem',
+            defaultSortOrder: 'ascend',
+            sorter: (a, b) => a.nameItem.length - b.nameItem.length,
             align: 'center'
         },
         {
@@ -86,7 +114,7 @@ function IteamAdmin() {
                 return (
                     <>
                         <Link to={`/updateitem/${record.ID_item}`}> <button className={cx("btnIcon")}><FontAwesomeIcon icon={faPenToSquare} /></button></Link>
-                        <button className={cx("btnIcon")}><FontAwesomeIcon icon={faTrash} /></button>
+                        <button className={cx("btnIcon")}><FontAwesomeIcon icon={faTrash} onClick={() => handleView2(record)} /></button>
                         <button className={cx("btnIcon")}><FontAwesomeIcon icon={faCircleInfo} onClick={() => handleView(record)} /></button>
                     </>
                 )
@@ -98,7 +126,7 @@ function IteamAdmin() {
     const [totalPages, setTotalPages] = useState(1);
 
 
-    useEffect(() => {
+    const fetchData = () => {
         fetch('http://localhost:3000/product')
             .then(res => res.json())
             .then(data => {
@@ -106,7 +134,13 @@ function IteamAdmin() {
                 setTotalPages(data.totalPages);
             })
             .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        fetchData();
     }, [])
+
+
 
 
     return (
@@ -148,7 +182,6 @@ function IteamAdmin() {
                 </Modal.Header>
                 <Modal.Body className={cx("bodyModal")}>
                     <div className="row">
-                        {/* <h1 className="text-dark">?????? : {recordView?.nameItem}</h1> */}
 
                         <div className={`${cx("leftModal")} col-lg-6 col-md-5 col-sm-12`}>
                             <img className={cx("imgModal")} src={`http://localhost:3000/${recordView?.imageItem}`} alt="" />
@@ -156,28 +189,26 @@ function IteamAdmin() {
                         <div className={`${cx("rightModal")} col-lg-6 col-md-7 col-sm-12`}>
                             <div className={cx("group")}>
                                 <span><FontAwesomeIcon className={cx("iconInput")} icon={faTag} /></span>
-                                {/* <input className={cx("inputGroup")} type="text" value={recordView?.nameItem || ""} onChange={e => setRecordView(e.target.value)}
-                                        name="nameItem" id="" placeholder='Tên sản phẩm...' /> */}
-                                <input className={cx("inputGroup")} type="text" value={recordView?.nameItem}
+                                <input className={cx("inputGroup")} type="text" disabled value={recordView?.nameItem}
                                     onChange={e => setNameItem(e.target.value)} name="nameItem" id="" placeholder='Tên sản phẩm...' />
                             </div>
                             <div className={cx("group")}>
                                 <span><FontAwesomeIcon className={cx("iconInput")} icon={faMaximize} /></span>
-                                <input className={cx("inputGroup")} type="text" value={recordView?.sizeItem}
+                                <input className={cx("inputGroup")} type="text" disabled value={recordView?.sizeItem}
                                     onChange={e => setSizeItem(e.target.value)} name="sizeItem" id="" placeholder='Kích thước....' />
                             </div>
                             <div className={cx("group")}>
                                 <span><FontAwesomeIcon className={cx("iconInput")} icon={faFillDrip} /></span>
-                                <input className={cx("inputGroup")} type="text" value={recordView?.colorItem}
+                                <input className={cx("inputGroup")} type="text" disabled value={recordView?.colorItem}
                                     onChange={e => setColor(e.target.value)} name="colorItem" id="" placeholder='Màu sắc...' />
                             </div>
                             <div className={cx("group")}>
                                 <span><FontAwesomeIcon className={cx("iconInput")} icon={faRecycle} /></span>
-                                <input className={cx("inputGroup")} type="text" value={recordView?.chatlieu}
+                                <input className={cx("inputGroup")} type="text" disabled value={recordView?.chatlieu}
                                     onChange={e => setChatLieu(e.target.value)} name="chatlieu" id="" placeholder='Chất liệu...' />
                             </div>
                             <div className={cx("group")}>
-                                <textarea className={cx("textAreaGroup")} placeholder='Mô tả' value={recordView?.desItem}
+                                <textarea className={cx("textAreaGroup")} placeholder='Mô tả' disabled value={recordView?.desItem}
                                     onChange={e => setDesItem(e.target.value)} name="desItem" id="" cols="27" rows="8"></textarea>
                             </div>
                         </div>
@@ -185,6 +216,22 @@ function IteamAdmin() {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button size='lg' style={{ fontSize: "16px" }} className={cx("btnClose")} variant="secondary" onClick={handleClose}>Đóng</Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={show2} onHide={handleClose2}>
+                <Modal.Header closeButton>
+                    <Modal.Title ><h2 className='text-dark m-0'>Xóa thiết bị</h2></Modal.Title>
+                </Modal.Header>
+                <Modal.Body className={cx("bodyModal")}>
+                    <p>Bạn có chắc muốn xóa thiết bị {recordView2?.nameItem}</p>
+                    {/* <form action="" >
+                        <input type="text" defaultValue={recordView2?.ID_item} name="ID_item" id="" />
+                    </form> */}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button size='lg' style={{ fontSize: "16px" }} className={cx("btnClose")} variant="secondary" onClick={handleClose2}>Đóng</Button>
+                    <Button size='lg' style={{ fontSize: "16px" }} className={cx("btnClose")} variant="danger" onClick={() => handleDelete(recordView2.ID_item)}>Xóa thiết bị</Button>
                 </Modal.Footer>
             </Modal>
         </div >
