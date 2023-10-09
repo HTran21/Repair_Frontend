@@ -1,12 +1,12 @@
+import classNames from "classnames/bind";
+import styles from "./OnlyLayout.module.scss";
 
+const cx = classNames.bind(styles);
 
 function OnlyLayout({ children }) {
     return (
-        <div className="container">
-            <div className="content">
-                {children}
-            </div>
-
+        <div className={cx("content")}>
+            {children}
         </div>
     );
 }

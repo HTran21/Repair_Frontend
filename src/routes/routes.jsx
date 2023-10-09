@@ -17,9 +17,13 @@ import IteamAdmin from '../resources/ItemAdmin/ItemAdmin';
 import AddProduct from '../resources/AddProduct/AddProduct';
 import UpdateItem from '../resources/UpdateItem/UpdateItem';
 
+// Shared routes
+import EditInfo from '../resources/EditInfo/EditInfo';
+
 // Layouts
 import HeaderOnly from '../components/Layouts/HeaderOnly/HeaderOnly';
 import OnlyLayout from '../components/Layouts/OnlyLayout/OnlyLayout';
+import SidebarUser from '../components/SidebarUser/SidebarUser';
 
 // public routes
 const publicRoutes = [
@@ -27,13 +31,14 @@ const publicRoutes = [
     { path: '/about', component: About },
     { path: '/contact', component: Contact },
     { path: '/item', component: Item },
-    { path: '/info', component: Info },
+    { path: '/info', component: Info, layout: SidebarUser },
     { path: '/test', component: Test },
     { path: '/login', component: Login, layout: HeaderOnly },
     { path: '/register', component: Register, layout: HeaderOnly },
     { path: '/product', component: Product },
 
-
+    // Shared
+    { path: '/editinfo', component: EditInfo, layout: SidebarUser },
     // Admin routes
     { path: '/admin', component: Admin, layout: Sidebar },
     { path: '/itemadmin', component: IteamAdmin, layout: Sidebar },
