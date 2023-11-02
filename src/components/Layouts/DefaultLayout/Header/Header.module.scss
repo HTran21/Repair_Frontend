@@ -85,3 +85,15 @@
 .bgToggle {
     color: lightgoldenrodyellow !important;
 }
+
+.btnLogin {
+    height: 40px;
+    padding: 5px 30px 0px 30px;
+    margin: auto;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #10bae9 0%, #a253c7 51%, #00C9FF 100%);
+    color: #fff;
+    font-size: 18px;
+}

@@ -4,7 +4,6 @@
 }
 
 .titlePage {
-    border: 1px solid blue;
     background-color: #fff;
     border-radius: 10px;
     padding: 10px;
@@ -12,75 +11,109 @@
 
 .contentInfo {
     margin: 10px auto;
-    height: 550px;
-    border: 1px solid red;
     background-color: #fff;
     border-radius: 10px;
     padding: 10px;
     height: auto;
 }
 
-.leftInfo {
-    border: 1px solid green;
-    height: 400px;
+.dashboardUser {
+    margin: 10px auto;
+    height: 535px;
+    background-color: #fff;
     border-radius: 10px;
-    margin-top: 10px;
-}
-
-.imageUser {
-    max-width: 250px;
-    width: 100%;
-    display: flex;
-    margin: auto;
-    border-radius: 50%;
     padding: 10px;
+    // height: auto;
+    border: 1px solid red;
 }
 
-.rightInfo {
-    border: 1px solid rgb(0, 153, 255);
-    height: 400px;
-    border-radius: 10px;
-    margin-top: 10px;
-    padding: 10px;
-
-}
-
-// .infoUser {
-//     border: 1px solid red;
+// .leftInfo {
+//     border: 1px solid green;
+//     height: 400px;
+//     border-radius: 10px;
+//     margin-top: 10px;
 // }
 
-.group {
-    max-width: 300px;
-    background-color: #e9ddddad;
-    padding: 5px;
-    border-radius: 10px;
-    margin: 10px 0px;
-    border-bottom: 1px solid rgb(222, 211, 211);
+// .imageUser {
+//     max-width: 250px;
+//     width: 100%;
+//     display: flex;
+//     margin: auto;
+//     border-radius: 50%;
+//     padding: 10px;
+// }
 
+// .rightInfo {
+//     border: 1px solid rgb(0, 153, 255);
+//     height: 400px;
+//     border-radius: 10px;
+//     margin-top: 10px;
+//     padding: 10px;
+
+// }
+
+// // .infoUser {
+// //     border: 1px solid red;
+// // }
+
+// .group {
+//     max-width: 300px;
+//     background-color: #e9ddddad;
+//     padding: 5px;
+//     border-radius: 10px;
+//     margin: 10px 0px;
+//     border-bottom: 1px solid rgb(222, 211, 211);
+
+// }
+
+// .iconInput {
+//     padding: 0px 5px;
+//     color: #062471;
+//     transform: translatey(2px);
+// }
+
+// .inputGroup {
+//     padding: 5px;
+//     outline: none;
+//     background-color: transparent;
+//     border: none;
+//     width: 80%;
+// }
+
+// @media (max-width: 770px) {
+//     .leftInfo>* {
+//         display: flex;
+//         margin: auto;
+//     }
+
+//     .infoUser>* {
+//         display: flex;
+//         margin: 10px auto;
+//     }
+// }
+
+.bgProfile {
+    background-image: url(https://img.freepik.com/free-vector/stylish-glowing-digital-red-lines-banner_1017-23964.jpg?w=1380&t=st=1697273992~exp=1697274592~hmac=a27a66f5949a3d2c71246af3a2656c394dbec370e5ef8e4878f30a3dfbf373b1);
+    height: 200px;
+    background-size: cover;
 }
 
-.iconInput {
-    padding: 0px 5px;
-    color: #062471;
-    transform: translatey(2px);
+.imgProfile {
+    width: 150px;
+    margin-left: 20px;
+    margin-top: 50px;
 }
 
-.inputGroup {
-    padding: 5px;
-    outline: none;
-    background-color: transparent;
-    border: none;
-    width: 80%;
+.btnEdit {
+    padding: 7px 10px;
+    border: 1px solid rgb(178, 169, 169);
+    border-radius: 5px;
+    z-index: 1;
+    transition: 0.3s;
+    width: 100%;
 }
 
-@media (max-width: 770px) {
-    .leftInfo>* {
-        display: flex;
-        margin: auto;
-    }
-
-    .infoUser>* {
-        display: flex;
-        margin: 10px auto;
-    }
+.btnEdit:hover {
+    background-color: #0169A6;
+    color: #fff;
 }

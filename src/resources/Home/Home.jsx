@@ -1,13 +1,18 @@
 import classNames from "classnames/bind";
 import styles from './Home.module.scss';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { motion } from 'framer-motion';
+
+import { Link } from 'react-router-dom';
 
 
 const cx = classNames.bind(styles);
 
 function Home() {
+
+    const [isLogin, setIsLogin] = useState(localStorage.getItem('isLogin') === 'true');
+
 
     return (
         <div className="container">
@@ -25,7 +30,9 @@ function Home() {
                 <div className={`col-md-6 col-lg-6 ${cx("contentHomePage")}`}>
                     <h1 className={cx("titleIntro")}>Chào mừng bạn đến với dịch vụ sửa chữa của chúng tôi</h1>
                     <h3 className={cx("desIntro")}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum harum aut cumque quam nulla porro saepe cum? Nisi, corporis porro?</h3>
-                    <button className={cx("btnHomeRepair")}>Sửa chữa ngay</button>
+                    <Link to={isLogin ? '/repair' : '/login'} className="text-decoration-none">
+                        <button className={cx("btnHomeRepair")}>Sửa chữa ngay</button>
+                    </Link>
 
                 </div>
 

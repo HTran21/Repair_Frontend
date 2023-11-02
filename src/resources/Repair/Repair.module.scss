@@ -1,0 +1,76 @@
+.titlePage {
+    color: #2D96D7;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0px 0px 0px;
+}
+
+.contentPage {
+    // margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.inputGroup {
+    padding: 5px 10px;
+}
+
+.labelInput {
+    font-weight: bold;
+    margin: auto 0;
+}
+
+.inputForm {
+    padding: 10px 5px;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: #cabfbf40;
+}
+
+.selectItem {
+    padding: 5px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #cabfbf40;
+    outline: none;
+}
+
+.inputGroup2 {
+    display: grid;
+    grid-template-columns: 50px auto;
+    padding: 5px 10px;
+}
+
+.labelTextarea {
+    margin: auto;
+    font-weight: bold;
+}
+
+.desRepair {
+    border-radius: 5px;
+    border: none;
+    background-color: #cabfbf40;
+    outline: none;
+    padding: 5px;
+}
+
+.btnClose {
+    padding: 8px 20px;
+    border: none;
+    background-color: #999191;
+    color: #fff;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.btnRepair {
+    padding: 10px 20px;
+    border: none;
+    background-color: #2d96d7;
+    color: #fff;
+    border-radius: 5px;
+    margin: 10px;
+}

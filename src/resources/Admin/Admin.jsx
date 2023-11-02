@@ -9,6 +9,7 @@ import { Table, Tag } from "antd";
 import axios from "axios";
 
 
+
 const cx = classNames.bind(styles)
 
 
@@ -118,12 +119,16 @@ function Admin() {
 
 
 
+
     return (
         <div className={`${cx("adminPage")} container`}>
             <div className={` row ${cx("controlAdmin")} d-flex justify-content-between`}>
                 <div className="col m-auto p-0 p-0">
                     <div className={cx("nofitication")}>
-                        <div className={cx("iconNofitication")}>
+                        <div className={cx("iconNofitication")} style={{
+                            color: "#007BFF",
+                            backgroundColor: "#CAE5FD"
+                        }}>
                             <FontAwesomeIcon size="xl" icon={faMessage} />
 
                         </div>
@@ -135,7 +140,10 @@ function Admin() {
                 </div>
                 <div className="col m-auto p-0">
                     <div className={cx("nofitication")}>
-                        <div className={cx("iconNofitication")}>
+                        <div className={cx("iconNofitication")} style={{
+                            color: "#01BBB0",
+                            backgroundColor: " #D1F0F0"
+                        }}>
                             <FontAwesomeIcon size="xl" icon={faUser} />
 
                         </div>
@@ -147,7 +155,10 @@ function Admin() {
                 </div>
                 <div className="col m-auto p-0">
                     <div className={cx("nofitication")}>
-                        <div className={cx("iconNofitication")}>
+                        <div className={cx("iconNofitication")} style={{
+                            color: "#FFB21E",
+                            backgroundColor: " #FFF0D2"
+                        }}>
                             <FontAwesomeIcon icon={faScrewdriverWrench} size="xl" />
 
                         </div>
@@ -159,7 +170,9 @@ function Admin() {
                 </div>
                 <div className="col m-auto p-0">
                     <div className={cx("nofitication")}>
-                        <div className={cx("iconNofitication")}>
+                        <div className={cx("iconNofitication")} style={{
+                            color: " #ffffff", backgroundColor: " #37d8d3c9"
+                        }}>
                             <FontAwesomeIcon icon={faUserPlus} size="xl" />
 
                         </div>
@@ -233,7 +246,7 @@ function Admin() {
                     </Table> */}
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 

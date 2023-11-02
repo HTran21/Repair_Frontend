@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faToolbox, faScrewdriverWrench, faComment, faPhoneVolume, faBars, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import classNames from "classnames/bind";
 import styles from "./Sidebar.module.scss";
@@ -40,9 +40,27 @@ function Sidebar({ children }) {
     //         icon: <FontAwesomeIcon icon={faComment} style={{ color: "#ffffff", }} />
     //     },
     // ]
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('isLogin')
+        localStorage.removeItem('ID_User')
+        localStorage.removeItem('avatar')
+        localStorage.removeItem('MSSV')
+        localStorage.removeItem('role')
+        navigate('/login');
+
+    }
 
     const location = useLocation();
     const url = location.pathname;
+
+    const navigator = useNavigate();
+
+    const role = localStorage?.getItem('role');
+    if (role != 'AD') {
+        return navigator('/denied');
+    }
     return (
         <div className={cx("container2")}>
             <div style={{ width: isOpen ? "200px" : "50px" }} className={cx("sidebar")}>
@@ -61,7 +79,7 @@ function Sidebar({ children }) {
                         <div className={cx("icon")}><FontAwesomeIcon icon={faToolbox} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Item</div>
                     </Link>
-                    <Link to={"/admin"} className={cx("link", { active: url.includes("/admin") })}>
+                    <Link to={"/repairadmin"} className={cx("link", { active: url.includes("/repairadmin") })}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faScrewdriverWrench} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Repair</div>
                     </Link>
@@ -73,10 +91,10 @@ function Sidebar({ children }) {
                         <div className={cx("icon")}><FontAwesomeIcon icon={faComment} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Comment</div>
                     </Link>
-                    <Link to={"/admin"} className={`${cx("link2")}`}>
+                    <div className={`${cx("link2")}`} onClick={handleLogout}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faRightFromBracket} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Logout</div>
-                    </Link>
+                    </div>
                     {/* {
                         menuItem.map((item, index) => (
                             <Link to={item.path} key={index} className={cx("link")}>

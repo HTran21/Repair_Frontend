@@ -5,6 +5,11 @@ import { faUser, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-i
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+// import dotenv from 'dotenv';
+
+// dotenv.config('.env');
+
+// const secretKey = process.env.JWT_SECRET;
 
 import toast from 'react-hot-toast';
 
@@ -43,30 +48,95 @@ function Login() {
         password: '',
     })
 
+    const [errors, setErrors] = useState({});
+
+
     const handleInput = (e) => {
         setValues(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3000/authentication/login', values)
-            .then(res => {
-                if (res.data.error) {
-                    toast.error(res.data.error)
-                }
-                else {
-                    // toast.success(res.data.message)
-                    if (res.data.values == 'AD') {
-                        navigate('/admin');
+
+
+        const newErrors = {};
+        if (values.MSSV.trim() === '') {
+            newErrors.MSSV = 'MSSV is required';
+        }
+        if (values.password.trim() === '') {
+            newErrors.password = 'Password is required';
+        }
+        if (Object.keys(newErrors).length === 0) {
+            axios.post('http://localhost:3000/authentication/login', values)
+                .then(res => {
+                    if (res.data.error) {
+                        toast.error(res.data.error)
                     }
                     else {
-                        navigate('/home');
+                        // localStorage.setItem("Info", res.data)
+
+                        if (res.data.data.role == 'AD') {
+                            const ID_User = res.data.data.ID_Staff;
+                            const MSSV = res.data.data.MaNV;
+                            const avatar = res.data.data.avatar;
+                            const role = res.data.data.role;
+                            localStorage.setItem("ID_User", ID_User);
+                            localStorage.setItem("MSSV", MSSV);
+                            localStorage.setItem("avatar", avatar);
+                            localStorage.setItem("role", role);
+                            localStorage.setItem("isLogin", "true");
+
+                            navigate('/admin');
+                        }
+                        else {
+                            const ID_User = res.data.data.ID_User;
+                            const MSSV = res.data.data.MSSV;
+                            const avatar = res.data.data.avatar;
+                            const role = res.data.data.role;
+                            localStorage.setItem("ID_User", ID_User);
+                            localStorage.setItem("MSSV", MSSV);
+                            localStorage.setItem("avatar", avatar);
+                            localStorage.setItem("role", role);
+                            localStorage.setItem("isLogin", "true");
+
+                            navigate('/home');
+                        }
                     }
-                }
-            })
-            .catch(err => console.log(err));
+                })
+                .catch(err => console.log(err));
+            // .then(res => {
+            //     if (res.data.error) {
+            //         toast.error(res.data.error)
+            //     }
+            //     else {
+            //         // localStorage.setItem("Info", res.data)
+            //         const ID_User = res.data.values.ID_User;
+            //         const MSSV = res.data.values.MSSV;
+            //         const avatar = res.data.values.avatar;
+            //         const role = res.data.values.role;
+            //         localStorage.setItem("ID_User", ID_User);
+            //         localStorage.setItem("MSSV", MSSV);
+            //         localStorage.setItem("avatar", avatar);
+            //         localStorage.setItem("role", role);
+            //         localStorage.setItem("isLogin", "true");
+
+            //         if (res.data.values.role == 'AD') {
+            //             navigate('/admin');
+            //         }
+            //         else {
+            //             navigate('/home');
+            //         }
+            //     }
+            // })
+            // .catch(err => console.log(err));
+        }
+        else {
+            setErrors(newErrors);
+        }
 
     }
+
+
 
     return (
         <div className="container">
@@ -87,21 +157,20 @@ function Login() {
                             <div className="contentForm ">
                                 <div className={cx("groupInput")}>
                                     <span className={cx("iconInput")}><FontAwesomeIcon icon={faUser} style={{ color: "#ffffff" }} /></span>
-                                    <input className={cx("inputForm")} name="MSSV" autoComplete='off' placeholder='Mã số sinh viên' required
+                                    <input className={cx("inputForm")} name="MSSV" autoComplete='off' placeholder='Mã số sinh viên'
                                         value={values.MSSV} onChange={handleInput} ></input>
 
                                 </div>
+                                {errors.MSSV && <p className={cx("error")}>{errors.MSSV}</p>}
                                 {/* <p className={cx("textError")}>Khong duoc de trong</p> */}
                                 <div className={cx("groupInput2")}>
                                     <span className={`${cx("iconInput2")} `}><FontAwesomeIcon icon={faLock} style={{ color: "#ffffff", }} /></span>
                                     <input className={cx("inputForm2")} name="password" autoComplete='off' placeholder='Password'
-                                        value={values.password} type={passwordShown ? "text" : "password"} required onChange={handleInput}></input>
+                                        value={values.password} type={passwordShown ? "text" : "password"} onChange={handleInput}></input>
                                     <FontAwesomeIcon icon={faEye} style={{ color: "#ffffff", }} onClick={togglePasword} className={`pt-2 ${cx("test")}`} />
                                     <FontAwesomeIcon icon={faEyeSlash} style={{ color: "#ffffff", }} onClick={togglePasword} className={`pt-2 ${cx("test2")}`} />
-
-
-
                                 </div>
+                                {errors.password && <p className={cx("error")}>{errors.password}</p>}
                                 <button type='submit' className={cx("btnLogin")}>Login</button>
 
                                 <p className='text-light text-center'>Bạn đã có tài khoản chưa?

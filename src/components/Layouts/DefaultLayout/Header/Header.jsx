@@ -1,6 +1,6 @@
 import styles from "./Header.module.scss";
 import classNames from 'classnames/bind';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 // import Navbar
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -14,8 +14,7 @@ import Wrapper from '../../../Popper/Wrapper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faGear } from '@fortawesome/free-solid-svg-icons';
-
-
+import { useEffect, useState } from "react";
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +24,20 @@ function Header() {
     const location = useLocation();
     const url = location.pathname;
 
+    const navigate = useNavigate();
+    const [MSSV, setMSSV] = useState(localStorage.getItem("MSSV"));
+    const [isLogin, setIsLogin] = useState(localStorage.getItem("isLogin") === 'true');
+    const [avatar, setAvatar] = useState(localStorage.getItem("avatar"));
+
+    const handleLogout = () => {
+        localStorage.removeItem('isLogin')
+        localStorage.removeItem('ID_User')
+        localStorage.removeItem('avatar')
+        localStorage.removeItem('MSSV')
+        localStorage.removeItem('role')
+        navigate('/login');
+
+    }
     return (
         <div className="bg-primary bg-opacity-25 p-1">
             <Navbar expand="lg">
@@ -54,28 +67,41 @@ function Header() {
 
                             <Link className={`text-decoration-none ${cx("navLinkColor", { active: url.includes("/contact") })}`} to="/contact" ><p>Contact</p></Link>
 
+                            {isLogin ? (
+                                <Tippy
+                                    interactive
+                                    placement='bottom'
+                                    render={attrs => (
+                                        <Wrapper>
+                                            <div className="box" tabIndex="-1" {...attrs}>
+                                                <ul>
+                                                    <Link to={`/info`} className="text-decoration-none text-light">
+                                                        <li>User</li>
+                                                    </Link>
+                                                    <li onClick={handleLogout}>Logout</li>
+                                                </ul>
+                                            </div>
+                                        </Wrapper>
 
-                            <Tippy
-                                interactive
-                                placement='bottom'
-                                render={attrs => (
-                                    <Wrapper>
-                                        <div className="box" tabIndex="-1" {...attrs}>
-                                            <ul>
-                                                <li>Trang ca nhan</li>
-                                                <li>Dang Xuat</li>
-                                                <li>Dang Xuat</li>
-                                            </ul>
-                                        </div>
-                                    </Wrapper>
+                                    )}
+                                >
+                                    <div className={cx("infoUser")}>
+                                        <img src={`http://localhost:3000/${avatar}`} className={cx("imgUser")} />
+                                        <span className={cx("nameUser")}>{MSSV}</span>
+                                    </div>
+                                </Tippy>
+                            ) : (
+                                <Link to={"/login"} className="d-flex text-decoration-none">
+                                    < div className={cx("infoUser")} >
+                                        <button className={cx("btnLogin")}>Login</button>
 
-                                )}
-                            >
-                                <div className={cx("infoUser")}>
-                                    <img src='../../../../../img/logo/avatar.jpg' className={cx("imgUser")} />
-                                    <span className={cx("nameUser")}>Tran</span>
-                                </div>
-                            </Tippy>
+                                    </div>
+                                </Link>
+
+                            )}
+
+
+
 
 
 

@@ -8,17 +8,25 @@ import Info from '../resources/Info/Info';
 import Test from '../resources/Test/Test';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Contact2 from '../resources/Admin/Contact2';
-import NotFound from '../resources/PageNotFound/PageNotFound';
 import Product from '../resources/Product/Product';
+import Repair from '../resources/Repair/Repair';
 
 // Admin routes
 import Admin from '../resources/Admin/Admin';
 import IteamAdmin from '../resources/ItemAdmin/ItemAdmin';
 import AddProduct from '../resources/AddProduct/AddProduct';
 import UpdateItem from '../resources/UpdateItem/UpdateItem';
+import AdminRepairList from '../resources/AdminRepairList/AdminRepairList';
 
 // Shared routes
 import EditInfo from '../resources/EditInfo/EditInfo';
+import RepairList from '../resources/RepairList/RepairList';
+import RepairEdit from '../resources/RepairEdit/RepairEdit';
+import RegisterFormRepair from '../resources/RegisterFormRepair/RegisterFormRepair';
+
+// Error
+import NotFound from '../resources/PageNotFound/PageNotFound';
+import AccessDenied from '../resources/AccessDenied/AccessDenied';
 
 // Layouts
 import HeaderOnly from '../components/Layouts/HeaderOnly/HeaderOnly';
@@ -36,15 +44,22 @@ const publicRoutes = [
     { path: '/login', component: Login, layout: HeaderOnly },
     { path: '/register', component: Register, layout: HeaderOnly },
     { path: '/product', component: Product },
+    { path: '/repair', component: Repair, layout: OnlyLayout },
+    { path: '/repairupdate/:id', component: RepairEdit, layout: OnlyLayout },
 
     // Shared
     { path: '/editinfo', component: EditInfo, layout: SidebarUser },
+    { path: '/userrepair', component: RepairList, layout: SidebarUser },
+    { path: '/approve', component: RegisterFormRepair, layout: OnlyLayout },
     // Admin routes
     { path: '/admin', component: Admin, layout: Sidebar },
     { path: '/itemadmin', component: IteamAdmin, layout: Sidebar },
     { path: '/itemadmin/add', component: AddProduct, layout: Sidebar },
     { path: '/contact2', component: Contact2, layout: Sidebar },
     { path: '/updateitem/:id', component: UpdateItem, layout: Sidebar },
+    { path: '/repairadmin', component: AdminRepairList, layout: Sidebar },
+
+    { path: '/denied', component: AccessDenied, layout: OnlyLayout },
     { path: '/:slug', component: NotFound, layout: OnlyLayout },
 ]
 

@@ -1,0 +1,32 @@
+.contentPage {
+    min-height: 100vh;
+    padding: 15px 10px;
+}
+
+.titlePage {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.contentRepairList {
+    margin: 10px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    height: auto;
+}
+
+.iconTable {
+    width: 25px;
+    height: 25px;
+    background-color: #ded6d6;
+    margin: 0 3px;
+    border-radius: 50%;
+    border: none;
+}
+
+.iconTable:hover {
+    color: #1941c8;
+    transform: scale(1.03);
+}

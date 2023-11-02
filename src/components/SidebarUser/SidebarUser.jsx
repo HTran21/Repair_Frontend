@@ -53,15 +53,15 @@ function SidebarUser({ children }) {
                             <FontAwesomeIcon icon={faBars} style={{ color: "#ffffff" }} onClick={toggle} />
                         </div>
                     </div>
-                    <Link to={"/info"} className={cx("link")}>
+                    <Link to={"/info"} className={cx("link", { active: url.includes("/info") })}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faUser} style={{ color: "#ffffff" }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>User</div>
                     </Link>
-                    <Link to={"/editinfo"} className={cx("link")}>
+                    <Link to={"/editinfo"} className={cx("link", { active: url.includes("/editinfo") })}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faPenToSquare} style={{ color: "#ffffff", padding: "0px" }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Edit</div>
                     </Link>
-                    <Link to={""} className={cx("link")}>
+                    <Link to={"/userrepair"} className={cx("link", { active: url.includes("/userrepair") })}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faScrewdriverWrench} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Repair</div>
                     </Link>
@@ -73,7 +73,7 @@ function SidebarUser({ children }) {
                         <div className={cx("icon")}><FontAwesomeIcon icon={faComment} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Comment</div>
                     </Link>
-                    <Link to={""} className={`${cx("link2")}`}>
+                    <Link to={"/home"} className={`${cx("link2")}`}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faRightFromBracket} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Back</div>
                     </Link>

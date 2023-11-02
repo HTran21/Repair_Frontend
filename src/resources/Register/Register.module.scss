@@ -80,17 +80,11 @@
     display: grid;
     grid-template-columns: 30px auto;
     padding: 10px 0;
-    margin-top: 20px;
     border-radius: 10px;
     background-color: #ffffff36;
     width: 80%;
-    margin: auto;
-
-
+    margin: 20px auto 0 auto;
 }
-
-
-
 
 .iconInput {
     padding: 0 12px;
@@ -116,11 +110,11 @@
     display: grid;
     grid-template-columns: 30px auto 30px;
     padding: 10px 0;
-    margin-top: 20px;
+    // margin-top: 20px;
     border-radius: 10px;
     background-color: #ffffff36;
     width: 80%;
-    margin: 20px auto;
+    margin: 20px auto 0 auto;
 
 }
 
@@ -169,57 +163,24 @@ input[type="text"]~.test2 {
 .groupInput3 {
     position: relative;
     display: grid;
-    grid-template-columns: 30px auto 30px;
+    grid-template-columns: 35px auto;
     padding: 10px 0;
     border-radius: 10px;
     background-color: #ffffff36;
     width: 80%;
-    margin: 20px auto;
-
+    margin: 20px auto 0 auto;
 }
 
-.iconInput3 {
-    padding: 0 12px;
-    transform: translateY(4px);
-
-}
-
-.inputForm3 {
-    background-color: transparent;
+.selectItem {
+    background-color: #ffffff00;
+    color: #fff;
     border: none;
     outline: none;
-    padding: 3px 0px 0px 3px;
-    margin-left: 5px;
-    color: #fff;
-    width: 100%;
 }
 
 
-
-.inputForm3::placeholder {
-    color: rgba(230, 230, 230, 0.679);
-
-}
-
-
-input[type="password"]~.test3 {
-    display: none;
-}
-
-input[type="text"]~.test4 {
-    display: none;
-}
-
-.groupInput4 {
-    position: relative;
-    display: grid;
-    grid-template-columns: 30px auto 30px;
-    padding: 10px 0;
-    border-radius: 10px;
-    background-color: #ffffff36;
-    margin: 20px auto;
-    width: 280px;
-
+.selectItem>option {
+    background-color: #383737;
 }
 
 .btnLogin {
@@ -234,7 +195,7 @@ input[type="text"]~.test4 {
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;
     display: block;
-    margin: 50px auto 30px auto;
+    margin: 20px auto 30px auto;
     border: none;
 }
 
@@ -270,4 +231,12 @@ input[type="text"]~.test4 {
     .btnLogin {
         width: 80%;
     }
+}
+
+.error {
+    text-align: center;
+    color: rgb(236, 77, 77);
+    margin: 0 auto;
+    font-weight: 500;
+
 }

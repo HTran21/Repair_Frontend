@@ -1,6 +1,7 @@
 import styles from './Contact.module.scss';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -23,6 +24,8 @@ function Contact() {
             </p>
         )
     }
+
+    const [isLogin, setIsLogin] = useState(localStorage.getItem("isLogin") === 'true');
 
 
     return (
@@ -57,7 +60,10 @@ function Contact() {
 
                                 <textarea className={cx("textArea")} name="" id="" cols="30" rows="10" placeholder='Your text'></textarea>
 
-                                <button className={cx("btnContact")}>Send Message</button>
+                                <Link to={isLogin ? '/home' : '/login'} className="text-decoration-none">
+                                    <button className={cx("btnContact")}>Send Message</button>
+                                </Link>
+
                             </div>
                         </form>
 
