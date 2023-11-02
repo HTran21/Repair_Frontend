@@ -3,14 +3,15 @@ import styles from "./Admin.module.scss";
 import { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMessage, faUser, faScrewdriverWrench, faMagnifyingGlass, faTrash, faPenToSquare, faCircleInfo, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMessage, faUser, faScrewdriverWrench, faMagnifyingGlass, faTrash, faPenToSquare, faCircleInfo, faUserPlus, faIdCard, faLock, faPhone, faEnvelope, faImage, faUserShield, faUserTie } from '@fortawesome/free-solid-svg-icons';
 
-import { Table, Tag } from "antd";
+import { Table, Tag, Tabs, Button, Modal } from "antd";
 import axios from "axios";
 
 
 
 const cx = classNames.bind(styles)
+const { TabPane } = Tabs;
 
 
 function Admin() {
@@ -89,7 +90,86 @@ function Admin() {
 
     ];
 
+    const columnsStaff = [
+        {
+            title: 'STT',
+            dataIndex: 'ID_Staff',
+            key: 'ID_Staff',
+            sorter: (a, b) => a.ID_Staff - b.ID_Staff,
+            render: (text, object, index) => { return index + 1 },
+            align: 'center',
+        },
+        {
+            title: 'Mã nhân viên',
+            dataIndex: 'MaNV',
+            key: 'MaNV',
+            defaultSortOrder: 'ascend',
+            sorter: (a, b) => a.MaNV.localeCompare(b.MaNV),
+            align: 'center',
+        },
+        {
+            title: 'Họ tên',
+            dataIndex: 'hoten',
+            key: 'hoten',
+            sorter: (a, b) => a.hoten.length - b.hoten.length,
+            align: 'center',
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'eamil',
+            align: 'center',
+        },
+        {
+            title: 'Số điện thoại',
+            dataIndex: 'phone',
+            key: 'phone',
+            align: 'center',
+        },
+        {
+            title: 'Chức vụ',
+            dataIndex: 'chucvu',
+            key: 'chucvu',
+            align: 'center',
+        },
+        {
+            title: 'Role',
+            dataIndex: 'role',
+            key: 'role',
+            render: (role) => {
+                let color;
+                if (role === 'AD') {
+                    color = 'geekblue';
+                } else {
+                    color = 'green';
+                }
+                return (
+                    <Tag color={color} key={role}>
+                        {role.toUpperCase()}
+                    </Tag>
+                )
+            },
+            align: 'center',
+        },
+        {
+            title: 'Action',
+            key: 'action',
+            align: 'center',
+            render: (record) => {
+                return (
+                    <>
+                        <button className={cx("iconTable")}><FontAwesomeIcon icon={faPenToSquare} /></button>
+                        <button className={cx("iconTable")}><FontAwesomeIcon icon={faTrash} /></button>
+                        <button className={cx("iconTable")}><FontAwesomeIcon icon={faCircleInfo} /></button>
+                    </>
+                )
+            }
+        },
+
+    ];
+
     const [data, setData] = useState();
+    const [staff, setStaff] = useState();
 
 
     const fetchData = () => {
@@ -100,10 +180,19 @@ function Admin() {
             })
             .catch(err => console.log(err));
     }
+    const fetchStaff = () => {
+        fetch('http://localhost:3000/user/staff')
+            .then(res => res.json())
+            .then(data => {
+                setStaff(data);
+            })
+            .catch(err => console.log(err));
+    }
 
 
     useEffect(() => {
         fetchData();
+        fetchStaff();
 
     }, [])
 
@@ -117,6 +206,22 @@ function Admin() {
         })
     }
 
+    const [activeTab, setActiveTab] = useState('1'); // Mặc định hiển thị tab 1
+
+    const handleTabChange = (key) => {
+        setActiveTab(key);
+    }
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
 
 
 
@@ -185,67 +290,120 @@ function Admin() {
 
             </div>
             <div className={`${cx("listUser")}`}>
-                <p className={cx("titleUser")}>Danh sách người dùng</p>
-                <div className={cx("search")}>
+                <div className="d-flex">
+                    <p className={cx("titleUser")}>Danh sách người dùng hệ thống</p>
+                    <div className="ms-auto d-flex align-items-center">
+                        <Button className={cx("btnAddStaff")} onClick={showModal}>Thêm nhân viên</Button>
+                    </div>
+                </div>
+
+
+                {/* <div className={cx("search")}>
                     <span className={cx("inconSearch")}><FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#7c7e83", }} /></span>
                     <input type="text" className={cx("inputSearch")} placeholder='Search...' />
-                </div>
+                </div> */}
                 <div className={`text-center ${cx("tableUser")}`}>
+                    <Tabs activeKey={activeTab} onChange={handleTabChange} >
+                        <TabPane tab="Danh sách sinh viên" key="1"  >
+                            <Table
+                                rowKey="MSSV"
+                                columns={columns}
+                                dataSource={data}
+                                pagination={{
+                                    defaultPageSize: 5,
+                                    showSizeChanger: true,
+                                    pageSizeOptions: ['5', '10', '15']
+                                }}
+                                onChange={handleTableChange}
 
-                    <Table
-                        rowKey="MSSV"
-                        columns={columns}
-                        dataSource={data}
-                        pagination={{
-                            defaultPageSize: 5,
-                            showSizeChanger: true,
-                            pageSizeOptions: ['5', '10', '15']
-                        }}
-                        onChange={handleTableChange}
+                            />
+                        </TabPane>
+                        <TabPane tab="Danh sách nhân viên" key="2">
+                            <Table
+                                rowKey="MSSV"
+                                columns={columnsStaff}
+                                dataSource={staff}
+                                pagination={{
+                                    defaultPageSize: 5,
+                                    showSizeChanger: true,
+                                    pageSizeOptions: ['5', '10', '15']
+                                }}
+                                onChange={handleTableChange}
 
-                    />
-                    {/* <Table striped bordered hover>
-                        <thead>
-                            <tr >
-                                <th>MSSV</th>
-                                <th>Họ tên</th>
-                                <th>Giới tính</th>
-                                <th>Phòng</th>
-                                <th>Email</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>B2014798</td>
-                                <td>Trần Hoàng Trân</td>
-                                <td>Nam</td>
-                                <td>AA02310</td>
-                                <td>tranb201798@student.ctu.edu.vn</td>
-                                <td>
-                                    <FontAwesomeIcon className={cx("iconTable")} icon={faPenToSquare} />
-                                    <FontAwesomeIcon className={cx("iconTable")} icon={faTrash} />
-                                    <FontAwesomeIcon className={cx("iconTable")} size="lg" icon={faCircleInfo} />
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>B2014798</td>
-                                <td>Trần Hoàng Trân</td>
-                                <td>Nam</td>
-                                <td>AA02310</td>
-                                <td>tranb201798@student.ctu.edu.vn</td>
-                                <td>
-                                    <FontAwesomeIcon className={cx("iconTable")} icon={faPenToSquare} />
-                                    <FontAwesomeIcon className={cx("iconTable")} icon={faTrash} />
-                                    <FontAwesomeIcon className={cx("iconTable")} size="lg" icon={faCircleInfo} />
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </Table> */}
+                            />
+                        </TabPane>
+                    </Tabs>
                 </div>
             </div>
+
+            <Modal title="Thêm nhân viên" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                <div className="row">
+                    <div className="col">
+                        <div className={cx("group")}>
+                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faIdCard} /></span>
+                            <input className={cx("inputGroup")} type="text" required name="" id="" placeholder="Mã nhân viên" />
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className={cx("group")}>
+                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faUser} /></span>
+                            <input className={cx("inputGroup")} type="text" name="" id="" placeholder="Họ tên" />
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <div className={cx("group")}>
+                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faLock} /></span>
+                            <input className={cx("inputGroup")} type="text" name="" id="" placeholder="Mật khẩu" />
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className={cx("group")}>
+                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faUserTie} /></span>
+                            <select className={cx("selectGroup")} name="" id="">
+                                <option value="">Chọn chức vụ</option>
+                                <option value="">Quản lý</option>
+                                <option value="">Thợ sửa chữa</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <div className={cx("group")}>
+                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faEnvelope} /></span>
+                            <input className={cx("inputGroup")} type="text" name="" id="" placeholder="Email" />
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className={cx("group")}>
+                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faPhone} /></span>
+                            <input className={cx("inputGroup")} type="text" name="" id="" placeholder="Số điện thoại" />
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <div className={cx("group")}>
+                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faImage} /></span>
+                            <input className={cx("inputGroup")} type="file" name="" id="" />
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className={cx("group")}>
+                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faUserShield} /></span>
+                            <select className={cx("selectGroup")} name="" id="">
+                                <option value="">Chọn vai trò</option>
+                                <option value="">AD</option>
+                                <option value="">ST</option>
+                                <option value="">SV</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </Modal>
+
         </div >
     );
 }

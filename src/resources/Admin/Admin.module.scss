@@ -101,3 +101,40 @@
 .tableUser {
     height: auto;
 }
+
+.btnAddStaff {
+    margin-right: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #5A9DC4;
+    color: #fff;
+    font-weight: bold;
+}
+
+.group {
+    display: grid;
+    grid-template-columns: 30px auto;
+    padding: 5px 5px;
+    margin: 5px 0px;
+    background-color: rgba(217, 206, 206, 0.299);
+    border-radius: 10px;
+}
+
+.iconGroup {
+    // padding: 5px 0px;
+    font-size: 18px;
+    color: rgb(31, 115, 164);
+}
+
+.inputGroup {
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.selectGroup {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
