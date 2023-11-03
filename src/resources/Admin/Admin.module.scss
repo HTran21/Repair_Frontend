@@ -138,3 +138,17 @@
     background-color: transparent;
     outline: none;
 }
+
+.group2 {
+    display: grid;
+    grid-template-columns: 30px auto 30px;
+    padding: 5px 5px;
+    margin: 5px 0px;
+    background-color: rgba(217, 206, 206, 0.299);
+    border-radius: 10px;
+}
+
+.error {
+    color: red;
+    margin: 0px 0px 0px 40px;
+}

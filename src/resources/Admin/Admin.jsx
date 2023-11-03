@@ -3,11 +3,11 @@ import styles from "./Admin.module.scss";
 import { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMessage, faUser, faScrewdriverWrench, faMagnifyingGlass, faTrash, faPenToSquare, faCircleInfo, faUserPlus, faIdCard, faLock, faPhone, faEnvelope, faImage, faUserShield, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faMessage, faUser, faScrewdriverWrench, faMagnifyingGlass, faTrash, faPenToSquare, faCircleInfo, faUserPlus, faIdCard, faLock, faPhone, faEnvelope, faImage, faUserShield, faUserTie, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-import { Table, Tag, Tabs, Button, Modal } from "antd";
+import { Table, Tag, Tabs, Button, Modal, ConfigProvider } from "antd";
 import axios from "axios";
-
+import toast from 'react-hot-toast';
 
 
 const cx = classNames.bind(styles)
@@ -139,9 +139,9 @@ function Admin() {
             render: (role) => {
                 let color;
                 if (role === 'AD') {
-                    color = 'geekblue';
+                    color = 'blue';
                 } else {
-                    color = 'green';
+                    color = 'orange';
                 }
                 return (
                     <Tag color={color} key={role}>
@@ -216,12 +216,111 @@ function Admin() {
     const showModal = () => {
         setIsModalOpen(true);
     };
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
+    // const handleOk = () => {
+    //     setIsModalOpen(false);
+    // };
     const handleCancel = () => {
         setIsModalOpen(false);
+        setMaNV('');
+        setUsername('');
+        setMaNV('');
+        setPassword('');
+        setChucvu('');
+        setEmail('');
+        setPhone('');
+        setAvatar(null);
+        setRole('');
+        setErrors('')
     };
+
+    const [avatar, setAvatar] = useState();
+    const [MaNV, setMaNV] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [chucvu, setChucvu] = useState('');
+    const [role, setRole] = useState('');
+    const [errors, setErrors] = useState({});
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const handleOk = () => {
+        const newErrors = {};
+
+        if (MaNV.trim() === '') {
+            newErrors.MaNV = 'MaNV is required';
+        }
+
+        if (username.trim() === '') {
+            newErrors.username = 'Username is required';
+        }
+
+        if (password.trim() === '') {
+            newErrors.password = 'Password is required';
+        }
+
+        if (email.trim() === '') {
+            newErrors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            newErrors.email = 'Invalid email address';
+        }
+
+        if (!avatar) {
+            newErrors.avatar = 'Image is required';
+        }
+
+        if (chucvu === '') {
+            newErrors.chucvu = 'Please select an option';
+        }
+
+        if (role === '') {
+            newErrors.role = 'Please select an option';
+        }
+
+        if (phone === '') {
+            newErrors.phone = 'Phone is required';
+        } else if (phone.length < 10) {
+            newErrors.phone = 'Invalid phone number';
+        }
+
+        if (Object.keys(newErrors).length === 0) {
+            const formData = new FormData()
+            formData.append('avatar', avatar)
+            formData.append('MaNV', MaNV)
+            formData.append('username', username)
+            formData.append('password', password)
+            formData.append('email', email)
+            formData.append('phone', phone)
+            formData.append('chucvu', chucvu)
+            formData.append('role', role)
+            axios.post('http://localhost:3000/authentication/addStaff', formData)
+                .then(res => {
+                    if (res.data.error) {
+                        toast.error(res.data.error)
+                    }
+                    else {
+                        toast.success(res.data.message)
+                        handleCancel();
+                        setErrors({});
+                        fetchStaff();
+
+
+                    }
+
+                })
+                .catch(err => console.log(err));
+        }
+        else {
+            setErrors(newErrors);
+        }
+
+    }
+
 
 
 
@@ -293,8 +392,20 @@ function Admin() {
                 <div className="d-flex">
                     <p className={cx("titleUser")}>Danh sách người dùng hệ thống</p>
                     <div className="ms-auto d-flex align-items-center">
-                        <Button className={cx("btnAddStaff")} onClick={showModal}>Thêm nhân viên</Button>
+                        <ConfigProvider
+                            theme={{
+                                token: {
+                                    // Seed Token
+                                    colorPrimary: '#DDF2FD',
+                                    borderRadius: 2,
+
+                                },
+                            }}
+                        >
+                            <Button className={cx("btnAddStaff")} onClick={showModal}>Thêm nhân viên</Button>
+                        </ConfigProvider>
                     </div>
+
                 </div>
 
 
@@ -320,7 +431,7 @@ function Admin() {
                         </TabPane>
                         <TabPane tab="Danh sách nhân viên" key="2">
                             <Table
-                                rowKey="MSSV"
+                                rowKey="MaNV"
                                 columns={columnsStaff}
                                 dataSource={staff}
                                 pagination={{
@@ -337,71 +448,96 @@ function Admin() {
             </div>
 
             <Modal title="Thêm nhân viên" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                <div className="row">
-                    <div className="col">
-                        <div className={cx("group")}>
-                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faIdCard} /></span>
-                            <input className={cx("inputGroup")} type="text" required name="" id="" placeholder="Mã nhân viên" />
+                <form action="" encType='multipart/form-data'>
+                    <div className="row">
+                        <div className="col">
+                            <div className={cx("group")}>
+                                <span className={cx("iconGroup")}><FontAwesomeIcon icon={faIdCard} /></span>
+                                <input className={cx("inputGroup")} type="text" required name="MaNV" id="" placeholder="Mã nhân viên"
+                                    value={MaNV} onChange={(e) => setMaNV(e.target.value)} />
+                            </div>
+                            {errors.MaNV && <p className={cx("error")}>{errors.MaNV}</p>}
+                        </div>
+                        <div className="col">
+                            <div className={cx("group")}>
+                                <span className={cx("iconGroup")}><FontAwesomeIcon icon={faUser} /></span>
+                                <input className={cx("inputGroup")} type="text" name="username" placeholder="Họ tên"
+                                    value={username} onChange={e => setUsername(e.target.value)} />
+                            </div>
+                            {errors.username && <p className={cx("error")}>{errors.username}</p>}
+
                         </div>
                     </div>
-                    <div className="col">
-                        <div className={cx("group")}>
-                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faUser} /></span>
-                            <input className={cx("inputGroup")} type="text" name="" id="" placeholder="Họ tên" />
+                    <div className="row">
+                        <div className="col-6">
+                            <div className={cx("group2")}>
+                                <span className={cx("iconGroup")}><FontAwesomeIcon icon={faLock} /></span>
+                                <input className={cx("inputGroup")} type={showPassword ? 'text' : 'password'} name="password"
+                                    value={password} onChange={e => setPassword(e.target.value)} placeholder="Mật khẩu" />
+                                <span onClick={togglePasswordVisibility} className={cx("iconGroup")}>
+                                    <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+                                </span>
+                            </div>
+                            {errors.password && <p className={cx("error")}>{errors.password}</p>}
+
+                        </div>
+                        <div className="col-6">
+                            <div className={cx("group")}>
+                                <span className={cx("iconGroup")}><FontAwesomeIcon icon={faUserTie} /></span>
+                                <select className={cx("selectGroup")} name="chucvu" value={chucvu} onChange={e => setChucvu(e.target.value)}>
+                                    <option key={1} value="">Chọn chức vụ</option>
+                                    <option key={2} value="Quản lý">Quản lý</option>
+                                    <option key={3} value="Thợ sửa chữa">Thợ sửa chữa</option>
+                                </select>
+                            </div>
+                            {errors.chucvu && <p className={cx("error")}>{errors.chucvu}</p>}
+
                         </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <div className={cx("group")}>
-                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faLock} /></span>
-                            <input className={cx("inputGroup")} type="text" name="" id="" placeholder="Mật khẩu" />
+                    <div className="row">
+                        <div className="col">
+                            <div className={cx("group")}>
+                                <span className={cx("iconGroup")}><FontAwesomeIcon icon={faEnvelope} /></span>
+                                <input className={cx("inputGroup")} type="text" name="email" placeholder="Email"
+                                    value={email} onChange={e => setEmail(e.target.value)} />
+                            </div>
+                            {errors.email && <p className={cx("error")}>{errors.email}</p>}
+
+                        </div>
+                        <div className="col">
+                            <div className={cx("group")}>
+                                <span className={cx("iconGroup")}><FontAwesomeIcon icon={faPhone} /></span>
+                                <input className={cx("inputGroup")} type="text" name="phone" placeholder="Số điện thoại"
+                                    value={phone} onChange={(e) => setPhone(e.target.value)} />
+                            </div>
+                            {errors.phone && <p className={cx("error")}>{errors.phone}</p>}
+
                         </div>
                     </div>
-                    <div className="col">
-                        <div className={cx("group")}>
-                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faUserTie} /></span>
-                            <select className={cx("selectGroup")} name="" id="">
-                                <option value="">Chọn chức vụ</option>
-                                <option value="">Quản lý</option>
-                                <option value="">Thợ sửa chữa</option>
-                            </select>
+                    <div className="row">
+                        <div className="col">
+                            <div className={cx("group")}>
+                                <span className={cx("iconGroup")}><FontAwesomeIcon icon={faImage} /></span>
+                                <input className={cx("inputGroup")} type="file" name="avatar"
+                                    accept="image/jpeg, image/png, image/jpg" onChange={e => setAvatar(e.target.files[0])} />
+                            </div>
+                            {errors.avatar && <p className={cx("error")}>{errors.avatar}</p>}
+
+                        </div>
+                        <div className="col">
+                            <div className={cx("group")}>
+                                <span className={cx("iconGroup")}><FontAwesomeIcon icon={faUserShield} /></span>
+                                <select className={cx("selectGroup")} name="role" value={role} onChange={e => setRole(e.target.value)}>
+                                    <option value="">Chọn vai trò</option>
+                                    <option value="AD">AD</option>
+                                    <option value="ST">ST</option>
+                                </select>
+                            </div>
+                            {errors.role && <p className={cx("error")}>{errors.role}</p>}
                         </div>
                     </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <div className={cx("group")}>
-                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faEnvelope} /></span>
-                            <input className={cx("inputGroup")} type="text" name="" id="" placeholder="Email" />
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className={cx("group")}>
-                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faPhone} /></span>
-                            <input className={cx("inputGroup")} type="text" name="" id="" placeholder="Số điện thoại" />
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <div className={cx("group")}>
-                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faImage} /></span>
-                            <input className={cx("inputGroup")} type="file" name="" id="" />
-                        </div>
-                    </div>
-                    <div className="col">
-                        <div className={cx("group")}>
-                            <span className={cx("iconGroup")}><FontAwesomeIcon icon={faUserShield} /></span>
-                            <select className={cx("selectGroup")} name="" id="">
-                                <option value="">Chọn vai trò</option>
-                                <option value="">AD</option>
-                                <option value="">ST</option>
-                                <option value="">SV</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                </form>
+
             </Modal>
 
         </div >
