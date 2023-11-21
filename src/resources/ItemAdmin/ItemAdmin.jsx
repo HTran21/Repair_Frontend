@@ -19,6 +19,8 @@ const cx = classNames.bind(styles);
 
 function IteamAdmin() {
 
+    const [search, setsearch] = useState('');
+
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
     const [recordView, setRecordView] = useState(null);
@@ -151,6 +153,31 @@ function IteamAdmin() {
     }
 
 
+    const handleSearch = () => {
+        if (search.trim() === '') {
+            toast.error("Vui lòng nhập ký tự")
+        }
+        else {
+            axios.get(`http://localhost:3000/product?search=${search}`)
+                .then(res => {
+                    if (res.data.length > 0) {
+                        console.log("Data search", res.data)
+                        setData(res.data)
+                    }
+                    else {
+                        setData([]);
+                    }
+                })
+                .catch(error => {
+                    console.error('Lỗi khi nhận dữ liệu từ API', error);
+                });
+        }
+    }
+
+    const handleReset = () => {
+        fetchData();
+        setsearch('')
+    }
 
 
     return (
@@ -158,10 +185,13 @@ function IteamAdmin() {
             <div className={`${cx("titlePage")} mt-4`}>
                 <h1 className={cx("title")}>Product List</h1>
                 <div className="row">
-                    <div className="col">
+                    <div className="col d-flex">
                         <div className={cx("search")}>
-                            <span className={cx("inconSearch")}><FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#7c7e83", }} /></span>
-                            <input type="text" className={cx("inputSearch")} placeholder='Search...' />
+                            <span className={cx("inconSearch")} onClick={handleSearch}><FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#7c7e83", }} /></span>
+                            <input type="text" value={search} onChange={(e) => setsearch(e.target.value)} className={cx("inputSearch")} placeholder='Search...' />
+                        </div>
+                        <div>
+                            <div className={cx("allItem")} onClick={handleReset}>Tất cả</div>
                         </div>
                     </div>
                     <div className="col m-auto d-flex">

@@ -3,7 +3,7 @@ import styles from "./Admin.module.scss";
 import { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMessage, faUser, faScrewdriverWrench, faMagnifyingGlass, faTrash, faPenToSquare, faCircleInfo, faUserPlus, faIdCard, faLock, faPhone, faEnvelope, faImage, faUserShield, faUserTie, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faMessage, faUser, faScrewdriverWrench, faMagnifyingGlass, faTrash, faPenToSquare, faCircleInfo, faUserPlus, faIdCard, faLock, faPhone, faEnvelope, faImage, faUserShield, faUserTie, faEye, faEyeSlash, faUserGear } from '@fortawesome/free-solid-svg-icons';
 
 import { Table, Tag, Tabs, Button, Modal, ConfigProvider } from "antd";
 import axios from "axios";
@@ -80,9 +80,7 @@ function Admin() {
             render: (record) => {
                 return (
                     <>
-                        <button className={cx("iconTable")}><FontAwesomeIcon icon={faPenToSquare} /></button>
-                        <button className={cx("iconTable")}><FontAwesomeIcon icon={faTrash} /></button>
-                        <button className={cx("iconTable")}><FontAwesomeIcon icon={faCircleInfo} /></button>
+                        <button className={cx("iconTable")} onClick={() => showModalDeleteUser(record)}><FontAwesomeIcon icon={faTrash} /></button>
                     </>
                 )
             }
@@ -158,9 +156,7 @@ function Admin() {
             render: (record) => {
                 return (
                     <>
-                        <button className={cx("iconTable")}><FontAwesomeIcon icon={faPenToSquare} /></button>
-                        <button className={cx("iconTable")}><FontAwesomeIcon icon={faTrash} /></button>
-                        <button className={cx("iconTable")}><FontAwesomeIcon icon={faCircleInfo} /></button>
+                        <button className={cx("iconTable")} onClick={() => showModalDelete(record)}><FontAwesomeIcon icon={faTrash} /></button>
                     </>
                 )
             }
@@ -171,6 +167,16 @@ function Admin() {
     const [data, setData] = useState();
     const [staff, setStaff] = useState();
 
+    const [dashBoard, setDashBoard] = useState();
+
+    const fetchDashBoard = () => {
+        axios.get('http://localhost:3000/user/dashboard')
+            .then(res => {
+                setDashBoard(res.data);
+
+            })
+            .catch(err => console.log(err));
+    }
 
     const fetchData = () => {
         fetch('http://localhost:3000/user')
@@ -193,6 +199,7 @@ function Admin() {
     useEffect(() => {
         fetchData();
         fetchStaff();
+        fetchDashBoard();
 
     }, [])
 
@@ -321,6 +328,56 @@ function Admin() {
 
     }
 
+    // Delete Staff
+    const [isModalStaff, setIsModalStaff] = useState(false);
+    const [dataStaff, setDataStaff] = useState();
+    const showModalDelete = (record) => {
+        setIsModalStaff(true);
+        setDataStaff(record)
+    };
+    const handleCancelDelete = () => {
+        setIsModalStaff(false);
+    }
+
+    const handleOkDelete = (id) => {
+        if (id) {
+            axios.delete('http://localhost:3000/user/' + id)
+                .then(res => {
+                    toast.success(res.data.message);
+                    setIsModalStaff(false);
+                    fetchStaff();
+                })
+                .catch(err => console.log(err));
+        }
+    }
+
+    // Delete User
+    const [isModalUser, setIsModalUser] = useState(false);
+    const [dataUser, setDataUser] = useState();
+    const showModalDeleteUser = (record) => {
+        setIsModalUser(true);
+        setDataUser(record)
+    };
+    const handleCancelDeleteUser = () => {
+        setIsModalUser(false);
+    }
+
+    const handleOkDeleteUser = (id) => {
+        if (id) {
+            axios.delete('http://localhost:3000/user/user/' + id)
+                .then(res => {
+                    toast.success(res.data.message);
+                    setIsModalUser(false);
+                    fetchData();
+                })
+                .catch(err => console.log(err));
+        }
+    }
+
+
+
+
+
 
 
 
@@ -352,7 +409,8 @@ function Admin() {
 
                         </div>
                         <div className={cx("contentNofitication")}>
-                            {data?.length}
+                            {dashBoard?.totalUsers
+                            }
                             <div>Người dùng</div>
                         </div>
                     </div>
@@ -367,8 +425,9 @@ function Admin() {
 
                         </div>
                         <div className={cx("contentNofitication")}>
-
-                            <div>Danh sách đăng ký</div>
+                            {dashBoard?.totalRepairs
+                            }
+                            <div>Đăng ký</div>
                         </div>
                     </div>
                 </div>
@@ -377,12 +436,12 @@ function Admin() {
                         <div className={cx("iconNofitication")} style={{
                             color: " #ffffff", backgroundColor: " #37d8d3c9"
                         }}>
-                            <FontAwesomeIcon icon={faUserPlus} size="xl" />
+                            <FontAwesomeIcon icon={faUserGear} size="xl" />
 
                         </div>
                         <div className={cx("contentNofitication")}>
-
-                            <div>Thêm người dùng</div>
+                            {dashBoard?.totalStaffs}
+                            <div>Nhân viên</div>
                         </div>
                     </div>
                 </div>
@@ -407,12 +466,6 @@ function Admin() {
                     </div>
 
                 </div>
-
-
-                {/* <div className={cx("search")}>
-                    <span className={cx("inconSearch")}><FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#7c7e83", }} /></span>
-                    <input type="text" className={cx("inputSearch")} placeholder='Search...' />
-                </div> */}
                 <div className={`text-center ${cx("tableUser")}`}>
                     <Tabs activeKey={activeTab} onChange={handleTabChange} >
                         <TabPane tab="Danh sách sinh viên" key="1"  >
@@ -538,6 +591,16 @@ function Admin() {
                     </div>
                 </form>
 
+            </Modal>
+
+
+            <Modal title="Xóa tài khoản nhân viên" open={isModalStaff} onOk={() => handleOkDelete(dataStaff?.ID_Staff)} okText={"Xóa"} cancelText={"Đóng"} onCancel={handleCancelDelete} okButtonProps={{ style: { background: 'red' } }}  >
+                Bạn có chắc chắn muốn xóa tài khoản này
+            </Modal>
+
+
+            <Modal title="Xóa tài khoản sinh viên" open={isModalUser} onOk={() => handleOkDeleteUser(dataUser?.ID_User)} okText={"Xóa"} cancelText={"Đóng"} onCancel={handleCancelDeleteUser} okButtonProps={{ style: { background: 'red' } }}  >
+                Bạn có chắc chắn muốn xóa tài khoản này
             </Modal>
 
         </div >

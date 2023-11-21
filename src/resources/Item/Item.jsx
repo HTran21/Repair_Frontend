@@ -8,6 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faPlus, faTrash, faPenToSquare, faImage, faTag, faMaximize, faCircleInfo, faFillDrip, faRecycle } from '@fortawesome/free-solid-svg-icons';
+import toast from 'react-hot-toast';
 
 
 const cx = classNames.bind(styles);
@@ -18,6 +19,8 @@ function Item() {
     const [show, setShow] = useState(false);
 
     const [recordView, setRecordView] = useState();
+
+    const [search, setsearch] = useState('');
 
     const handleView = (item) => {
         setShow(true)
@@ -34,6 +37,27 @@ function Item() {
 
     const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
+    // Search
+    const handleSearch = () => {
+        if (search.trim() === '') {
+            toast.error("Vui lòng nhập ký tự")
+        }
+        else {
+            axios.get(`http://localhost:3000/product?search=${search}`)
+                .then(res => {
+                    if (res.data.length > 0) {
+                        console.log("Data search", res.data)
+                        setData(res.data)
+                    }
+                    else {
+                        setData([]);
+                    }
+                })
+                .catch(error => {
+                    console.error('Lỗi khi nhận dữ liệu từ API', error);
+                });
+        }
+    }
 
     return (
         <div>
@@ -43,8 +67,8 @@ function Item() {
                     <h3 className='text-light p-4'>Tìm khiếm thiết bị bạn mong muốn</h3>
                     <div className={cx("groupInput")}>
                         <div className={cx("search")}>
-                            <span className={cx("inconSearch")}><FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#7c7e83", }} /></span>
-                            <input type="text" className={cx("inputSearch")} placeholder='Search...' />
+                            <span onClick={handleSearch} className={cx("inconSearch")}><FontAwesomeIcon icon={faMagnifyingGlass} style={{ color: "#7c7e83", }} /></span>
+                            <input type="text" value={search} onChange={(e) => setsearch(e.target.value)} className={cx("inputSearch")} placeholder='Search...' />
                         </div>
                     </div>
                 </div>
