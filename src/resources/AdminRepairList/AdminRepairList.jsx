@@ -1,29 +1,27 @@
 import classNames from "classnames/bind";
 import styles from "./AdminRepairList.module.scss";
 import { useState, useEffect } from "react";
-import { Table, Tag, Tabs } from "antd";
+import { Table, Tabs, Modal } from "antd";
 import axios from 'axios';
 import toast from "react-hot-toast";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX, faCheck, faInfo } from '@fortawesome/free-solid-svg-icons';
 
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
 
 const cx = classNames.bind(styles);
 const { TabPane } = Tabs;
 
 function AdminRepairList() {
 
-    const [activeTab, setActiveTab] = useState('1'); // Mặc định hiển thị tab 1
+    const [activeTab, setActiveTab] = useState('1');
 
     const handleTabChange = (key) => {
         setActiveTab(key);
     }
 
     const [dataUnapproved, setDataUnapproved] = useState();
+    const [dataAccept, setDataAccept] = useState();
 
     const columns = [
         {
@@ -72,6 +70,34 @@ function AdminRepairList() {
             align: 'center',
         },
         {
+            title: 'Ngày hẹn',
+            dataIndex: 'NgayDuyet',
+            key: 'NgayDuyet',
+            sorter: (a, b) => {
+                // Convert the dates to JavaScript Date objects for comparison
+                const dateA = new Date(a.NgayDuyet);
+                const dateB = new Date(b.NgayDuyet);
+
+                // Compare the dates
+                return dateA - dateB;
+            },
+            render: (NgayDuyet) => {
+                if (NgayDuyet === '0000-00-00') {
+                    return <>
+                        <p className='m-0'>Chưa duyệt</p>
+                    </>
+                }
+                const date = new Date(NgayDuyet);
+                let day = date.getDate();
+                let month = date.getMonth() + 1;
+                let year = date.getFullYear();
+                const formattedDate = `${day}/${month}/${year}`;
+                return formattedDate
+
+            },
+            align: 'center',
+        },
+        {
             title: 'Action',
             key: 'action',
             align: 'center',
@@ -79,15 +105,16 @@ function AdminRepairList() {
                 if (record.TrangThai === 'N') {
                     return (
                         <>
-                            <button className={cx("iconDenied")}><FontAwesomeIcon icon={faX} /></button>
-                            <Link><button className={cx("iconSuccess")}><FontAwesomeIcon icon={faCheck} /></button></Link>
+                            <Link to={`/approve/${record.ID_Repair}`}><button className={cx("iconSuccess")}><FontAwesomeIcon icon={faCheck} /></button></Link>
+
+                            <button className={cx("iconDenied")}><FontAwesomeIcon icon={faX} onClick={() => showModal(record)} /></button>
                         </>
                     )
                 }
                 else {
                     return (
                         <>
-                            <Link><button className={cx("iconSuccess")}><FontAwesomeIcon icon={faInfo} /></button></Link>
+                            <Link to={`/repairinfo/${record.ID_Repair}`}><button className={cx("iconSuccess")}><FontAwesomeIcon icon={faInfo} /></button></Link>
                         </>
                     )
                 }
@@ -105,115 +132,22 @@ function AdminRepairList() {
             .catch(error => console.error('Lỗi:', error));
     }
 
+    const fetchDataAccept = () => {
+        axios.get('http://localhost:3000/repair/accept') // Thay thế URL_BACKEND_API bằng URL thực tế của API
+            .then(res => {
+                setDataAccept(res.data); // Lưu dữ liệu vào state
+                // setTotalPages(data.totalPages);
+            })
+            .catch(error => console.error('Lỗi:', error));
+    }
+
     useEffect(() => {
         fetchDataUnapproved();
     }, [])
 
-    console.log(dataUnapproved)
-
-    const dataChuaDuyet = [
-        {
-            "ID_Repair": 1,
-            "MSSV": "B2014798",
-            "nameItem": "Bồn cầu",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "N"
-        },
-        {
-            "ID_Repair": 2,
-            "MSSV": "B2014798",
-            "nameItem": "Chậu rửa mặt",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "N"
-        },
-        {
-            "ID_Repair": 3,
-            "MSSV": "B2014798",
-            "nameItem": "Đèn",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "N"
-        },
-        {
-            "ID_Repair": 4,
-            "MSSV": "B2014798",
-            "nameItem": "Tủ",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "N"
-        },
-        {
-            "ID_Repair": 5,
-            "MSSV": "B2014798",
-            "nameItem": "Tủ",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "N"
-        },
-        {
-            "ID_Repair": 6,
-            "MSSV": "B2014798",
-            "nameItem": "Tủ",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "N"
-        },
-        {
-            "ID_Repair": 7,
-            "MSSV": "B2014798",
-            "nameItem": "Tủ",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "N"
-        },
-    ]
-
-    const dataDaDuyet = [
-        {
-            "ID_Repair": 1,
-            "MSSV": "B2014798",
-            "nameItem": "Bồn cầu",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "Y"
-        },
-        {
-            "ID_Repair": 2,
-            "MSSV": "B2014798",
-            "nameItem": "Chậu rửa mặt",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "Y"
-        },
-        {
-            "ID_Repair": 3,
-            "MSSV": "B2014798",
-            "nameItem": "Đèn",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "Y"
-        },
-        {
-            "ID_Repair": 4,
-            "MSSV": "B2014798",
-            "nameItem": "Tủ",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "Y"
-        },
-        {
-            "ID_Repair": 5,
-            "MSSV": "B2014798",
-            "nameItem": "Tủ",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "Y"
-        },
-        {
-            "ID_Repair": 6,
-            "MSSV": "B2014798",
-            "nameItem": "Tủ",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "Y"
-        },
-        {
-            "ID_Repair": 7,
-            "MSSV": "B2014798",
-            "nameItem": "Tủ",
-            "NgayDK": "01/11/2023",
-            "TrangThai": "Y"
-        },
-    ]
+    useEffect(() => {
+        fetchDataAccept();
+    }, [])
 
     const [pagination, setPagination] = useState({});
 
@@ -224,25 +158,40 @@ function AdminRepairList() {
             setPagination(pagination);
         })
     }
+
+    // Modal
+    const [repair, setRepair] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = (record) => {
+        setIsModalOpen(true);
+        setRepair(record);
+        console.log("ID repair", record.ID_Repair)
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleOk = (id) => {
+        if (id) {
+            axios.delete('http://localhost:3000/repair/delete', { data: { id: id } })
+                .then(res => {
+                    toast.success(res.data.message);
+                    setIsModalOpen(false);
+                    fetchDataUnapproved();
+                })
+                .catch(err => console.log(err));
+        }
+    }
+
     return (
         <div className="container min-vh-100">
             <div className={`${cx("titlePage")} mt-4`}>
                 <h1 className={cx("title")}>Repair List</h1>
             </div>
             <div className={cx("contentPage")}>
-                {/* <Table
-                    rowKey="ID_Repair"
-                    columns={columns}
-                    dataSource={data}
-                    pagination={{
-                        defaultPageSize: 5,
-                        showSizeChanger: true,
-                        pageSizeOptions: ['5', '10', '15']
-                    }}
-                    onChange={handleTableChange}
-                /> */}
                 <Tabs activeKey={activeTab} onChange={handleTabChange} >
-                    <TabPane tab="Sửa chữa chưa duyệt" key="1"  >
+                    <TabPane tab="Sửa chữa chưa duyệt" key="1" >
                         <Table
                             rowKey="ID_Repair"
                             columns={columns}
@@ -255,11 +204,11 @@ function AdminRepairList() {
                             onChange={handleTableChange}
                         />
                     </TabPane>
-                    <TabPane tab="Sửa chữa đã duyệt" key="2">
+                    <TabPane tab="Sửa chữa đã duyệt" key="2" >
                         <Table
                             rowKey="ID_Repair"
                             columns={columns}
-                            dataSource={dataDaDuyet}
+                            dataSource={dataAccept}
                             pagination={{
                                 defaultPageSize: 5,
                                 showSizeChanger: true,
@@ -270,6 +219,10 @@ function AdminRepairList() {
                     </TabPane>
                 </Tabs>
             </div>
+
+            <Modal title="Xóa đăng ký" open={isModalOpen} onOk={() => handleOk(repair?.ID_Repair)} okText={"Xóa"} cancelText={"Đóng"} onCancel={handleCancel} okButtonProps={{ style: { background: 'red' } }}  >
+                Bạn có chắc chắn muốn xóa đăng ký
+            </Modal>
         </div>
     );
 }

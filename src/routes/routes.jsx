@@ -23,6 +23,7 @@ import EditInfo from '../resources/EditInfo/EditInfo';
 import RepairList from '../resources/RepairList/RepairList';
 import RepairEdit from '../resources/RepairEdit/RepairEdit';
 import RegisterFormRepair from '../resources/RegisterFormRepair/RegisterFormRepair';
+import RepairInfo from '../resources/RepairInfo/RepairInfo';
 
 // Error
 import NotFound from '../resources/PageNotFound/PageNotFound';
@@ -50,7 +51,8 @@ const publicRoutes = [
     // Shared
     { path: '/editinfo', component: EditInfo, layout: SidebarUser },
     { path: '/userrepair', component: RepairList, layout: SidebarUser },
-    { path: '/approve', component: RegisterFormRepair, layout: OnlyLayout },
+    { path: '/approve/:id', component: RegisterFormRepair, layout: OnlyLayout },
+    { path: '/repairinfo/:id', component: RepairInfo, layout: OnlyLayout },
     // Admin routes
     { path: '/admin', component: Admin, layout: Sidebar },
     { path: '/itemadmin', component: IteamAdmin, layout: Sidebar },

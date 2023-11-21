@@ -4,12 +4,15 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import moment from 'moment-timezone';
 
 const cx = classNames.bind(styles);
 
 function RegisterFormRepair() {
 
     const { id } = useParams();
+
+    const ID_Staff = localStorage.getItem("ID_User");
 
     const [date, setDate] = useState();
     const [MSSV, setMSSV] = useState('');
@@ -21,6 +24,12 @@ function RegisterFormRepair() {
     const [thietbi, setThietbi] = useState();
     const [mota, setMota] = useState('');
 
+    const [ngayDuyet, setNgayDuyet] = useState();
+    const [nhanvien, setNhanvien] = useState('');
+
+
+    const [staff, setStaff] = useState();
+
     const [items, setItems] = useState();
     useEffect(() => {
         axios.get('http://localhost:3000/product')
@@ -29,28 +38,40 @@ function RegisterFormRepair() {
             })
             .catch(err => console.log(err));
     }, [])
-    // useEffect(() => {
-    //     axios.get('http://localhost:3000/repair/update/' + id)
-    //         .then(res => {
-    //             setMSSV(res.data.MSSV)
-    //             setHoten(res.data.HoTen)
-    //             setEmail(res.data.email)
-    //             setPhone(res.data.phone)
-    //             setDay(res.data.TenDay)
-    //             setPhong(res.data.TenPhong)
-    //             setThietbi(res.data?.ID_item)
-    //             const NgayDK = res.data.NgayDK;
-    //             // const formattedDate = new Date(NgayDK).toISOString().split('T')[0];
-    //             const formattedDate = moment(NgayDK).tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD');
-    //             setDate(formattedDate);
-    //             setMota(res.data.MoTa)
-    //         })
-    //         .catch(err => console.log(err))
-    // }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/user/staff')
+            .then(res => {
+                setStaff(res.data)
+                console.log("Nhan vien", res.data)
+            })
+            .catch(err => console.log(err));
+    }, [])
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/repair/update/' + id)
+            .then(res => {
+                setMSSV(res.data.MSSV)
+                setHoten(res.data.HoTen)
+                setEmail(res.data.email)
+                setPhone(res.data.phone)
+                setDay(res.data.TenDay)
+                setPhong(res.data.TenPhong)
+                setThietbi(res.data?.ID_item)
+                const NgayDK = res.data.NgayDK;
+                // const formattedDate = new Date(NgayDK).toISOString().split('T')[0];
+                const formattedDate = moment(NgayDK).tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD');
+                setDate(formattedDate);
+                setMota(res.data.MoTa);
+            })
+            .catch(err => console.log(err))
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put('http://localhost:3000/repair/update/' + id, { thietbi, mota })
+        console.log("Ngay Duyet", ngayDuyet);
+        console.log("Nhan vien", nhanvien);
+        axios.put('http://localhost:3000/repair/accept/' + id, { nhanvien, ngayDuyet })
             .then(res => {
                 if (res.data.error) {
                     toast.error(res.data.error)
@@ -129,7 +150,7 @@ function RegisterFormRepair() {
                                                                 <div className={cx("inputGroup")}>
                                                                     <label className={cx("labelInput")}>Thiết bị</label>
                                                                     <select className={cx("selectItem")} name="thietbi" id="" required
-                                                                        value={thietbi} onChange={e => setThietbi(e.target.value)}>
+                                                                        value={thietbi} onChange={e => setThietbi(e.target.value)} disabled>
                                                                         <option value="">Chọn thiết bị</option>
                                                                         {
                                                                             items?.map((item, i) =>
@@ -143,11 +164,11 @@ function RegisterFormRepair() {
                                                                 <div className={cx("inputGroup")}>
                                                                     <label className={cx("labelInput")}>Người sửa chữa</label>
                                                                     <select className={cx("selectItem")} name="thietbi" id="" required
-                                                                        value={thietbi} onChange={e => setThietbi(e.target.value)}>
+                                                                        value={nhanvien} onChange={e => setNhanvien(e.target.value)}>
                                                                         <option value="">Chọn người sửa chữa</option>
                                                                         {
-                                                                            items?.map((item, i) =>
-                                                                                <option key={i} value={item.ID_item}>{item.nameItem}</option>
+                                                                            staff?.map((item, i) =>
+                                                                                <option key={i} value={item.ID_Staff}>{item.hoten}</option>
                                                                             )
                                                                         }
                                                                     </select>
@@ -166,8 +187,8 @@ function RegisterFormRepair() {
                                                             <div className="col">
                                                                 <div className={cx("inputGroup")}>
                                                                     <label className={cx("labelInput")}>Ngày hẹn</label>
-                                                                    <input type="datetime-local" className={cx("inputForm")} name="dateRepair" id=""
-                                                                        defaultValue={date} />
+                                                                    <input type="date" className={cx("inputForm")} name="dateRepair" id=""
+                                                                        defaultValue={ngayDuyet} onChange={(e) => setNgayDuyet(e.target.value)} />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -196,7 +217,7 @@ function RegisterFormRepair() {
                                                                 value={mota} onChange={e => setMota(e.target.value)} required></textarea>
                                                         </div>
                                                         <div className="d-flex justify-content-end">
-                                                            <Link to={"/home"} className='text-decoration-none'>
+                                                            <Link to={"/repairadmin"} className='text-decoration-none'>
                                                                 <div className={cx("btnClose")}>Hủy</div>
                                                             </Link>
                                                             <button className={cx("btnRepair")}>Duyệt</button>

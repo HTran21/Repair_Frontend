@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './RepairEdit.module.scss';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import moment from 'moment-timezone';
@@ -9,6 +9,8 @@ import moment from 'moment-timezone';
 const cx = classNames.bind(styles);
 
 function RepairEdit() {
+
+    const navigate = useNavigate();
 
     const { id } = useParams();
 
@@ -44,7 +46,7 @@ function RepairEdit() {
                 // const formattedDate = new Date(NgayDK).toISOString().split('T')[0];
                 const formattedDate = moment(NgayDK).tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD');
                 setDate(formattedDate);
-                setMota(res.data.MoTa)
+                setMota(res.data.MoTa);
             })
             .catch(err => console.log(err))
     }, [])
@@ -57,7 +59,9 @@ function RepairEdit() {
                     toast.error(res.data.error)
                 }
                 else {
-                    toast.success(res.data.message)
+                    navigate('/userrepair');
+
+                    // toast.success(res.data.message)
                 }
             })
             .catch(err => console.log(err))

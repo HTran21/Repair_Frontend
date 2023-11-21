@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faToolbox, faScrewdriverWrench, faComment, faPhoneVolume, faBars, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Modal } from 'antd';
 
 import classNames from "classnames/bind";
 import styles from "./Sidebar.module.scss";
@@ -13,44 +14,34 @@ function Sidebar({ children }) {
 
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
-    // const menuItem = [
-    //     {
-    //         path: "/admin",
-    //         name: "Admin",
-    //         icon: <FontAwesomeIcon icon={faHouse} style={{ color: "#ffffff", }} />
-    //     },
-    //     {
-    //         path: "/itemadmin",
-    //         name: "Item",
-    //         icon: <FontAwesomeIcon icon={faToolbox} style={{ color: "#ffffff", }} />
-    //     },
-    //     {
-    //         path: "/admin",
-    //         name: "Repair",
-    //         icon: <FontAwesomeIcon icon={faScrewdriverWrench} style={{ color: "#ffffff", }} />
-    //     },
-    //     {
-    //         path: "/contact2",
-    //         name: "Contact",
-    //         icon: <FontAwesomeIcon icon={faPhoneVolume} style={{ color: "#ffffff", }} />
-    //     },
-    //     {
-    //         path: "/admin",
-    //         name: "Comment",
-    //         icon: <FontAwesomeIcon icon={faComment} style={{ color: "#ffffff", }} />
-    //     },
-    // ]
     const navigate = useNavigate();
 
-    const handleLogout = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
         localStorage.removeItem('isLogin')
         localStorage.removeItem('ID_User')
         localStorage.removeItem('avatar')
         localStorage.removeItem('MSSV')
         localStorage.removeItem('role')
         navigate('/login');
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
 
-    }
+    // const handleLogout = () => {
+    //     localStorage.removeItem('isLogin')
+    //     localStorage.removeItem('ID_User')
+    //     localStorage.removeItem('avatar')
+    //     localStorage.removeItem('MSSV')
+    //     localStorage.removeItem('role')
+    //     navigate('/login');
+
+    // }
 
     const location = useLocation();
     const url = location.pathname;
@@ -91,10 +82,14 @@ function Sidebar({ children }) {
                         <div className={cx("icon")}><FontAwesomeIcon icon={faComment} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Comment</div>
                     </Link>
-                    <div className={`${cx("link2")}`} onClick={handleLogout}>
+                    <div className={`${cx("link2")}`} onClick={showModal}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faRightFromBracket} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Logout</div>
                     </div>
+
+                    <Modal title="Đăng xuất" open={isModalOpen} onOk={handleOk} okText={"Đăng xuất"} cancelText={"Đóng"} onCancel={handleCancel} okButtonProps={{ style: { background: 'red' } }}  >
+                        Bạn có chắc chắn muốn đăng xuất
+                    </Modal>
                     {/* {
                         menuItem.map((item, index) => (
                             <Link to={item.path} key={index} className={cx("link")}>
