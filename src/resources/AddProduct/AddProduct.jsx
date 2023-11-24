@@ -90,7 +90,7 @@ function AddProduct() {
     return (
         <div className="container">
             <div className={`${cx("contentPage")} mt-4`}>
-                <h1 className={cx("title")}>Add Product</h1>
+                <h1 className={cx("title")}>Thêm sản phẩm</h1>
                 <form action="" encType="multipart/form-data">
                     <div className="row">
                         <div className="col">

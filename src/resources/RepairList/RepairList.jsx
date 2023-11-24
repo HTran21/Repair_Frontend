@@ -202,7 +202,7 @@ function RepairList() {
         <div className='container'>
             <div className={cx("contentPage")}>
                 <div className={cx("titlePage")}>
-                    <h1 className='text-dark'>Repair List</h1>
+                    <h1 className={cx("title")}>Danh sách sửa chữa</h1>
                 </div>
                 <div className={cx("contentRepairList")}>
                     <Table

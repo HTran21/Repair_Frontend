@@ -45,7 +45,7 @@ function Dashboard() {
     return (
         <div className="container min-vh-100">
             <div className={`${cx("titlePage")} mt-4`}>
-                <h1 className={cx("title")}>Dashboard</h1>
+                <h1 className={cx("title")}>Thống kê</h1>
             </div>
             <div className={cx("contentPage")}>
                 <div style={{ height: '500px', display: 'flex', justifyContent: 'center' }}>

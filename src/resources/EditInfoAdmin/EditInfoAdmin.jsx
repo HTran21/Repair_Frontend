@@ -72,7 +72,7 @@ function EditInfoAdmin() {
         <div className="container">
             <div className={cx("contentPage")}>
                 <div className={cx("titlePage")}>
-                    <h1 className="text-dark">EDIT PROFILE</h1>
+                    <h1 className="text-dark">Chỉnh sửa thông tin</h1>
                 </div>
                 <section className={cx("contentEditInfo")}>
                     <div className="container py-5">

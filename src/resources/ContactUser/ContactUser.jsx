@@ -90,7 +90,7 @@ function ContactUser
     return (
         <div className="container min-vh-100">
             <div className={`${cx("titlePage")} mt-4`}>
-                <h1 className={cx("title")}>Contact</h1>
+                <h1 className={cx("title")}>Liên hệ</h1>
             </div>
             <div className={cx("contentPage")}>
                 <div className={cx("list")}>

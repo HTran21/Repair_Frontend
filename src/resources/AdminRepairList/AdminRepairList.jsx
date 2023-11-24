@@ -186,7 +186,7 @@ function AdminRepairList() {
     return (
         <div className="container min-vh-100">
             <div className={`${cx("titlePage")} mt-4`}>
-                <h1 className={cx("title")}>Repair List</h1>
+                <h1 className={cx("title")}>Danh sách sửa chữa</h1>
             </div>
             <div className={cx("contentPage")}>
                 <Tabs activeKey={activeTab} onChange={handleTabChange} >

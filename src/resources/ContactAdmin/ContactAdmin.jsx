@@ -138,7 +138,7 @@ function ContactAdmin() {
     return (
         <div className="container min-vh-100">
             <div className={`${cx("titlePage")} mt-4`}>
-                <h1 className={cx("title")}>Contact List</h1>
+                <h1 className={cx("title")}>Danh sách liên hệ</h1>
             </div>
             <div className={cx("contentPage")}>
                 <div className={cx("list")}>

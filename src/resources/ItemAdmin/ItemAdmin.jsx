@@ -183,7 +183,7 @@ function IteamAdmin() {
     return (
         <div className="container min-vh-100">
             <div className={`${cx("titlePage")} mt-4`}>
-                <h1 className={cx("title")}>Product List</h1>
+                <h1 className={cx("title")}>Danh sách thiết bị</h1>
                 <div className="row">
                     <div className="col d-flex">
                         <div className={cx("search")}>

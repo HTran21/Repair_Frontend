@@ -29,14 +29,14 @@ function InfoAdmin() {
         <div className="container">
             <div className={cx("contentPage")}>
                 <div className={cx("titlePage")}>
-                    <h1 className="text-dark">PROFILE</h1>
+                    <h1 className={cx("title")}>Thông tin cá nhân</h1>
                 </div>
-                <div className={cx("contentAdmin")}>
+                <div className={cx("contentInfo")}>
 
                     <section className="h-100 gradient-custom-2">
                         <div className=" h-100">
                             <div className="row d-flex justify-content-center align-items-center h-100">
-                                <div className=" mt-4">
+                                <div className="">
                                     <div className="card">
                                         <div className={`rounded-top text-white d-flex flex-row ${cx("bgProfile")}`}>
                                             <div
