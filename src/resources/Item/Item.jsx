@@ -60,7 +60,7 @@ function Item() {
     }
 
     return (
-        <div>
+        <div className='min-vh-100'>
             <div className={cx("introItem")}>
                 <div className='container  h-100 align-items-center justify-content-center text-center position-relative'>
                     <h1 className={`${cx("titleIntro")}`}>DANH SÁCH THIẾT BỊ SỬA CHỮA</h1>

@@ -1,0 +1,57 @@
+.contentPage {
+    min-height: 100vh;
+    padding: 15px 10px;
+}
+
+.titlePage {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.contentEditInfo {
+    margin: 10px auto;
+    height: 550px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    height: auto;
+}
+
+
+
+.inputInfo {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.btnClose {
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8c8686;
+    color: #fff;
+}
+
+.btnSave {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #304adf;
+    color: #fff;
+}
+
+.btnImage {
+    max-width: 100px;
+    margin: auto;
+    padding: 5px 10px;
+    background-color: #0169A6;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.inputForm {
+    display: none;
+}

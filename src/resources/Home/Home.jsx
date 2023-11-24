@@ -17,7 +17,7 @@ function Home() {
     return (
         <div className="container">
 
-            <motion.div
+            {/* <motion.div
                 className={`row d-flex justify-content-center align-items-center h-100 ${cx("homePage")}`}
 
                 initial={{ opacity: 0, scale: 0 }}
@@ -26,7 +26,8 @@ function Home() {
                 viewport={{
                     once: true,
                 }}
-            >
+            > */}
+            <div className={`row d-flex justify-content-center align-items-center h-100 ${cx("homePage")}`}>
                 <div className={`col-md-6 col-lg-6 ${cx("contentHomePage")}`}>
                     <h1 className={cx("titleIntro")}>Chào mừng bạn đến với dịch vụ sửa chữa của chúng tôi</h1>
                     <h3 className={cx("desIntro")}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum harum aut cumque quam nulla porro saepe cum? Nisi, corporis porro?</h3>
@@ -39,9 +40,11 @@ function Home() {
                 <div className="col-md-6 col-lg-6 d-none d-lg-block">
                     <img className={`${cx("imgHomeRepair")}`} src="../../../img/img_page/illustration_contact2.png" />
                 </div>
+            </div>
 
-            </motion.div>
-            <motion.div
+
+            {/* </motion.div> */}
+            {/* <motion.div
 
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -49,33 +52,33 @@ function Home() {
                 viewport={{
                     once: true,
                 }}
-            >
+            > */}
 
-                <div className={cx("itemList")}>
-                    <div className="row w-100 d-flex justify-content-between">
-                        <div className={`col ${cx("imgItem")}`}>
-                            <img className="d-flex m-auto" src="../../../img/icon/bed.png" width={60} />
-                        </div>
-                        <div className={`col ${cx("imgItem")}`}>
-                            <img className="d-flex m-auto" src="../../../img/icon/fan.png" width={60} />
-                        </div>
-                        <div className={`col ${cx("imgItem")}`}>
-                            <img className="d-flex m-auto" src="../../../img/icon/lightbulb.png" width={60} />
-                        </div>
-                        <div className={`col ${cx("imgItem")}`}>
-                            <img className="d-flex m-auto" src="../../../img/icon/toilet.png" width={60} />
-                        </div>
-                        <div className={`col ${cx("imgItem")}`}>
-                            <img className="d-flex m-auto" src="../../../img/icon/basin.png" width={60} />
-                        </div>
+            <div className={cx("itemList")}>
+                <div className="row w-100 d-flex justify-content-between">
+                    <div className={`col ${cx("imgItem")}`}>
+                        <img className="d-flex m-auto" src="../../../img/icon/bed.png" width={60} />
                     </div>
+                    <div className={`col ${cx("imgItem")}`}>
+                        <img className="d-flex m-auto" src="../../../img/icon/fan.png" width={60} />
+                    </div>
+                    <div className={`col ${cx("imgItem")}`}>
+                        <img className="d-flex m-auto" src="../../../img/icon/lightbulb.png" width={60} />
+                    </div>
+                    <div className={`col ${cx("imgItem")}`}>
+                        <img className="d-flex m-auto" src="../../../img/icon/toilet.png" width={60} />
+                    </div>
+                    <div className={`col ${cx("imgItem")}`}>
+                        <img className="d-flex m-auto" src="../../../img/icon/basin.png" width={60} />
+                    </div>
+                </div>
 
-                </div>
-                <div className={`w-100 d-flex justify-content-center mb-5 mt-0 ${cx("divButton")}`}>
-                    <button className={cx("buttonSeeMore")}>See more</button>
-                    <div className={cx("line")}></div>
-                </div>
-            </motion.div>
+            </div>
+            <div className={`w-100 d-flex justify-content-center mb-5 mt-0 ${cx("divButton")}`}>
+                <button className={cx("buttonSeeMore")}>See more</button>
+                <div className={cx("line")}></div>
+            </div>
+            {/* </motion.div> */}
 
 
             <div className={`row d-flex justify-content-center align-items-center h-100 ${cx("homePage2")}`}>

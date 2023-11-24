@@ -46,7 +46,7 @@ function About() {
                     <div className="row ms-5 me-5 d-flex">
                         <div className='col'>
                             <div className={cx("infoUserTeam")}>
-                                <img src='http://localhost:3000/admin.jpg' className={cx("imgTeam")} />
+                                <img src='http://localhost:3000/admin2.png' className={cx("imgTeam")} />
                                 <div className={cx("infoUser")}>
                                     <h2 className='text-center text-dark'>Trần Hoàng Trân</h2>
                                     <h4 className='text-center text-dark'>Tổng Giám Đốc</h4>

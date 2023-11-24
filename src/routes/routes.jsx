@@ -18,7 +18,9 @@ import AddProduct from '../resources/AddProduct/AddProduct';
 import UpdateItem from '../resources/UpdateItem/UpdateItem';
 import AdminRepairList from '../resources/AdminRepairList/AdminRepairList';
 import ContactAdmin from '../resources/ContactAdmin/ContactAdmin';
-
+import Dashboard from '../resources/Dashboard/Dashboard';
+import InfoAdmin from '../resources/InfoAdmin/InfoAdmin';
+import EditInfoAdmin from '../resources/EditInfoAdmin/EditInfoAdmin';
 // Shared routes
 import EditInfo from '../resources/EditInfo/EditInfo';
 import RepairList from '../resources/RepairList/RepairList';
@@ -62,6 +64,9 @@ const publicRoutes = [
     { path: '/updateitem/:id', component: UpdateItem, layout: Sidebar },
     { path: '/repairadmin', component: AdminRepairList, layout: Sidebar },
     { path: '/contactadmin', component: ContactAdmin, layout: Sidebar },
+    { path: '/dashboard', component: Dashboard, layout: Sidebar },
+    { path: '/infoadmin', component: InfoAdmin, layout: Sidebar },
+    { path: '/editadmin', component: EditInfoAdmin, layout: Sidebar },
 
     { path: '/denied', component: AccessDenied, layout: OnlyLayout },
     { path: '/:slug', component: NotFound, layout: OnlyLayout },

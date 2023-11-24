@@ -92,16 +92,20 @@ function ContactAdmin() {
     ]
 
     const [listContact, setListContact] = useState();
-    const fetchListReapair = () => {
+    // const fetchListReapair = () => {
+    //     axios.get("http://localhost:3000/contact")
+    //         .then(res => {
+    //             setListContact(res.data);
+    //         })
+    //         .catch((err) => console.log(err));
+    // }
+
+    useEffect(() => {
         axios.get("http://localhost:3000/contact")
             .then(res => {
                 setListContact(res.data);
             })
             .catch((err) => console.log(err));
-    }
-
-    useEffect(() => {
-        fetchListReapair();
     }, [])
 
     const [IdContact, setIdContact] = useState('');

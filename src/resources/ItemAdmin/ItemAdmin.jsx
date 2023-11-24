@@ -211,9 +211,9 @@ function IteamAdmin() {
                         columns={columns}
                         dataSource={data}
                         pagination={{
-                            defaultPageSize: 5,
+                            defaultPageSize: 4,
                             showSizeChanger: true,
-                            pageSizeOptions: ['5', '10', '15']
+                            pageSizeOptions: ['4', '10', '15']
                         }}
                         onChange={handleTableChange} />
                 </div>

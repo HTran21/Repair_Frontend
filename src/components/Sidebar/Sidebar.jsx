@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faToolbox, faScrewdriverWrench, faComment, faPhoneVolume, faBars, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faToolbox, faScrewdriverWrench, faComment, faPhoneVolume, faBars, faRightFromBracket, faChainBroken, faChainSlash, faChartArea, faChartBar, faChartColumn, faChartSimple, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Modal } from 'antd';
@@ -66,6 +66,10 @@ function Sidebar({ children }) {
                         <div className={cx("icon")}><FontAwesomeIcon icon={faHouse} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Admin</div>
                     </Link>
+                    <Link to={"/infoadmin"} className={cx("link", { active: url.includes("/infoadmin") })}>
+                        <div className={cx("icon")}><FontAwesomeIcon icon={faUser} style={{ color: "#ffffff", }} /></div>
+                        <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Info</div>
+                    </Link>
                     <Link to={"/itemadmin"} className={cx("link", { active: url.includes("/itemadmin") })}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faToolbox} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Item</div>
@@ -78,9 +82,9 @@ function Sidebar({ children }) {
                         <div className={cx("icon")}><FontAwesomeIcon icon={faPhoneVolume} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Contact</div>
                     </Link>
-                    <Link to={"/admin"} className={cx("link")}>
-                        <div className={cx("icon")}><FontAwesomeIcon icon={faComment} style={{ color: "#ffffff", }} /></div>
-                        <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Comment</div>
+                    <Link to={"/dashboard"} className={cx("link", { active: url.includes("/dashboard") })}>
+                        <div className={cx("icon")}><FontAwesomeIcon icon={faChartSimple} style={{ color: "#ffffff", }} /></div>
+                        <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Dashboard</div>
                     </Link>
                     <div className={`${cx("link2")}`} onClick={showModal}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faRightFromBracket} style={{ color: "#ffffff", }} /></div>

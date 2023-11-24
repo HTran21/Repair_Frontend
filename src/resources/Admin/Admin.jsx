@@ -173,6 +173,7 @@ function Admin() {
         axios.get('http://localhost:3000/user/dashboard')
             .then(res => {
                 setDashBoard(res.data);
+                console.log(res.data)
 
             })
             .catch(err => console.log(err));
@@ -394,7 +395,8 @@ function Admin() {
 
                         </div>
                         <div className={cx("contentNofitication")}>
-                            47
+                            {dashBoard?.totalContacts
+                            }
                             <div>Tin nhắn</div>
                         </div>
                     </div>
