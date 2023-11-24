@@ -53,6 +53,7 @@ function RepairList() {
             title: 'Ngày đăng ký',
             dataIndex: 'NgayDK',
             key: 'NgayDK',
+            defaultSortOrder: 'descend',
             sorter: (a, b) => {
                 // Convert the dates to JavaScript Date objects for comparison
                 const dateA = new Date(a.NgayDK);

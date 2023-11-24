@@ -25,11 +25,11 @@ function AdminRepairList() {
 
     const columns = [
         {
-            title: 'STT',
+            title: 'ID',
             dataIndex: 'ID_Repair',
             key: 'id',
             sorter: (a, b) => a.ID_User - b.ID_User,
-            render: (text, object, index) => { return index + 1 },
+            // render: (text, object, index) => { return index + 1 },
             align: 'center',
         },
         {
@@ -73,6 +73,7 @@ function AdminRepairList() {
             title: 'Ngày hẹn',
             dataIndex: 'NgayDuyet',
             key: 'NgayDuyet',
+            defaultSortOrder: 'descend',
             sorter: (a, b) => {
                 // Convert the dates to JavaScript Date objects for comparison
                 const dateA = new Date(a.NgayDuyet);
@@ -143,11 +144,9 @@ function AdminRepairList() {
 
     useEffect(() => {
         fetchDataUnapproved();
-    }, [])
-
-    useEffect(() => {
         fetchDataAccept();
     }, [])
+
 
     const [pagination, setPagination] = useState({});
 

@@ -57,7 +57,7 @@ function SidebarUser({ children }) {
                         <div className={cx("icon")}><FontAwesomeIcon icon={faScrewdriverWrench} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Repair</div>
                     </Link>
-                    <Link to={""} className={cx("link")}>
+                    <Link to={"/contactuser"} className={cx("link", { active: url.includes("/contactuser") })}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faPhoneVolume} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Contact</div>
                     </Link>

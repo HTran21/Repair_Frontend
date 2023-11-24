@@ -1,0 +1,44 @@
+.titlePage {
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.title {
+    font-weight: bold;
+    color: #016aa6ea;
+}
+
+.contentPage {
+    min-height: 550px;
+    margin-top: 20px;
+    padding: 20px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.iconDenied {
+    padding: 3px 6px;
+    transition: 0.3s;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 50%;
+    background-color: rgba(83, 87, 87, 0.237);
+}
+
+.iconDenied:hover {
+    color: red;
+}
+
+.iconNext {
+    color: #000;
+    padding: 3px 8px;
+    border-radius: 50%;
+    background-color: rgba(83, 87, 87, 0.237);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.iconNext:hover {
+    color: blue;
+}

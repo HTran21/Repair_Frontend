@@ -48,18 +48,6 @@ function Header() {
         setIsModalOpen(false);
     };
 
-
-
-
-    // const handleLogout = () => {
-    //     localStorage.removeItem('isLogin')
-    //     localStorage.removeItem('ID_User')
-    //     localStorage.removeItem('avatar')
-    //     localStorage.removeItem('MSSV')
-    //     localStorage.removeItem('role')
-    //     navigate('/login');
-
-    // }
     return (
         <div className="bg-primary bg-opacity-25 p-1">
             <Navbar expand="lg">
@@ -87,7 +75,7 @@ function Header() {
 
                             <Link className={`text-decoration-none ${cx("navLinkColor", { active: url.includes("/item") })}`} to="/item" ><p>Item</p></Link>
 
-                            <Link className={`text-decoration-none ${cx("navLinkColor", { active: url.includes("/contact") })}`} to="/contact" ><p>Contact</p></Link>
+                            <Link className={`text-decoration-none ${cx("navLinkColor", { active: url.includes("/contact") })}`} to={isLogin ? '/contact' : '/login'} ><p>Contact</p></Link>
 
                             {isLogin ? (
                                 <Tippy

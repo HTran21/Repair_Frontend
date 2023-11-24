@@ -1,18 +1,21 @@
 import classNames from 'classnames/bind';
 import styles from './RepairInfo.module.scss';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import moment from 'moment-timezone';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
 function RepairInfo() {
 
     const toPath = localStorage.getItem("MSSV") === 'Admin' ? '/repairadmin' : '/userrepair';
-
+    const role = localStorage.getItem("role");
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [date, setDate] = useState();
     const [MSSV, setMSSV] = useState('');
@@ -23,6 +26,9 @@ function RepairInfo() {
     const [phong, setPhong] = useState('');
     const [thietbi, setThietbi] = useState();
     const [mota, setMota] = useState('');
+
+    const [status, setStatus] = useState('');
+    const [IdRepair, setIdRepair] = useState('');
 
     const [ngayDuyet, setNgayDuyet] = useState();
     const [nhanvien, setNhanvien] = useState('');
@@ -45,9 +51,23 @@ function RepairInfo() {
                 setNgayDuyet(formattedDate);
                 setMota(res.data.MoTa);
                 setNhanvien(res.data.hotenNV);
+                setStatus(res.data?.TrangThai);
+                setIdRepair(res.data?.ID_Repair)
             })
             .catch(err => console.log(err))
     }, [])
+    const currentDate = new Date();
+    const dateReload = currentDate.toISOString().slice(0, 10);
+
+    const handleReLoad = (e) => {
+        e.preventDefault();
+        axios.post("http://localhost:3000/repair/" + IdRepair, { dateReload })
+            .then(res => {
+                navigate('/contactadmin');
+            })
+            .catch(err => console.log(err))
+
+    }
 
     return (
         <div className="container">
@@ -151,10 +171,19 @@ function RepairInfo() {
                                                             value={mota} onChange={e => setMota(e.target.value)} required></textarea>
                                                     </div>
                                                     <div className="d-flex justify-content-end">
-                                                        <Link to={toPath} className='text-decoration-none'>
+                                                        <div>
+                                                            {role === 'AD' && status === 'Y' && (
+                                                                <div className={cx("btnReload")} onClick={handleReLoad}>
+                                                                    <FontAwesomeIcon icon={faRotateRight} />
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                        {/* <Link to={toPath} className='text-decoration-none'>
+                                                            <div className={cx("btnClose")}>Đóng</div>
+                                                        </Link> */}
+                                                        <Link to={"#"} onClick={() => window.history.back()} className='text-decoration-none'>
                                                             <div className={cx("btnClose")}>Đóng</div>
                                                         </Link>
-                                                        {/* <div onClick={() => history.goBack()} className={cx("btnClose")}>Đóng</div> */}
                                                     </div>
 
 

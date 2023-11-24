@@ -7,9 +7,9 @@ import Item from '../resources/Item/Item';
 import Info from '../resources/Info/Info';
 import Test from '../resources/Test/Test';
 import Sidebar from '../components/Sidebar/Sidebar';
-import Contact2 from '../resources/Admin/Contact2';
 import Product from '../resources/Product/Product';
 import Repair from '../resources/Repair/Repair';
+import ContactUser from '../resources/ContactUser/ContactUser';
 
 // Admin routes
 import Admin from '../resources/Admin/Admin';
@@ -17,6 +17,7 @@ import IteamAdmin from '../resources/ItemAdmin/ItemAdmin';
 import AddProduct from '../resources/AddProduct/AddProduct';
 import UpdateItem from '../resources/UpdateItem/UpdateItem';
 import AdminRepairList from '../resources/AdminRepairList/AdminRepairList';
+import ContactAdmin from '../resources/ContactAdmin/ContactAdmin';
 
 // Shared routes
 import EditInfo from '../resources/EditInfo/EditInfo';
@@ -51,15 +52,16 @@ const publicRoutes = [
     // Shared
     { path: '/editinfo', component: EditInfo, layout: SidebarUser },
     { path: '/userrepair', component: RepairList, layout: SidebarUser },
+    { path: '/contactuser', component: ContactUser, layout: SidebarUser },
     { path: '/approve/:id', component: RegisterFormRepair, layout: OnlyLayout },
     { path: '/repairinfo/:id', component: RepairInfo, layout: OnlyLayout },
     // Admin routes
     { path: '/admin', component: Admin, layout: Sidebar },
     { path: '/itemadmin', component: IteamAdmin, layout: Sidebar },
     { path: '/itemadmin/add', component: AddProduct, layout: Sidebar },
-    { path: '/contact2', component: Contact2, layout: Sidebar },
     { path: '/updateitem/:id', component: UpdateItem, layout: Sidebar },
     { path: '/repairadmin', component: AdminRepairList, layout: Sidebar },
+    { path: '/contactadmin', component: ContactAdmin, layout: Sidebar },
 
     { path: '/denied', component: AccessDenied, layout: OnlyLayout },
     { path: '/:slug', component: NotFound, layout: OnlyLayout },
