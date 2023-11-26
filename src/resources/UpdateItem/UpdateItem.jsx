@@ -119,7 +119,7 @@ function UpdateItem() {
         <div className="container">
 
             <div className={`${cx("contentPage")} mt-4`}>
-                <h1 className={cx("title")}>Edit Product</h1>
+                <h1 className={cx("title")}>Chỉnh sửa thiết bị</h1>
                 <form action="">
                     <div className="row">
                         <div className="col mt-1">
