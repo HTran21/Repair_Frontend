@@ -80,7 +80,7 @@ function RepairInfo() {
                                 <div className="col col-xl-10">
                                     <div className="card p-2 mt-5" style={{ borderRadius: "1rem" }}>
                                         <div className={cx("titlePage")}>
-                                            ĐĂNG KÝ SỬA CHỮA
+                                            THÔNG TIN ĐĂNG KÝ
                                         </div>
                                         <div className="row g-0">
 

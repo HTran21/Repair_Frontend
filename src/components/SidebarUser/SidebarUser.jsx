@@ -61,10 +61,10 @@ function SidebarUser({ children }) {
                         <div className={cx("icon")}><FontAwesomeIcon icon={faPhoneVolume} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Contact</div>
                     </Link>
-                    <Link to={""} className={cx("link")}>
+                    {/* <Link to={""} className={cx("link")}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faComment} style={{ color: "#ffffff", }} /></div>
                         <div style={{ display: isOpen ? "block" : "none" }} className={cx("link_text")}>Comment</div>
-                    </Link>
+                    </Link> */}
                     <hr></hr>
                     <Link to={"/home"} className={cx("link")}>
                         <div className={cx("icon")}><FontAwesomeIcon icon={faHouse} style={{ color: "#ffffff", }} /></div>
