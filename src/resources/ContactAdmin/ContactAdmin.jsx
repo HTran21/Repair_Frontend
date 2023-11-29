@@ -100,12 +100,16 @@ function ContactAdmin() {
     //         .catch((err) => console.log(err));
     // }
 
-    useEffect(() => {
+    const fetchListReapair = () => {
         axios.get("http://localhost:3000/contact")
             .then(res => {
                 setListContact(res.data);
             })
             .catch((err) => console.log(err));
+    }
+
+    useEffect(() => {
+        fetchListReapair();
     }, [])
 
     const [IdContact, setIdContact] = useState('');
@@ -122,8 +126,9 @@ function ContactAdmin() {
                 }
                 else {
                     handleCancel();
-                    toast.success(res.data.message);
                     fetchListReapair();
+                    toast.success(res.data.message);
+
                 }
             })
             .catch((err) => console.log(err));

@@ -5,7 +5,6 @@ import Login from '../resources/Login/Login';
 import Register from '../resources/Register/Register';
 import Item from '../resources/Item/Item';
 import Info from '../resources/Info/Info';
-import Test from '../resources/Test/Test';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Product from '../resources/Product/Product';
 import Repair from '../resources/Repair/Repair';
@@ -44,7 +43,6 @@ const publicRoutes = [
     { path: '/contact', component: Contact },
     { path: '/item', component: Item },
     { path: '/info', component: Info, layout: SidebarUser },
-    { path: '/test', component: Test },
     { path: '/login', component: Login, layout: HeaderOnly },
     { path: '/register', component: Register, layout: HeaderOnly },
     { path: '/product', component: Product },
