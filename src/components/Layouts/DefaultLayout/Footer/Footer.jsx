@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGear } from '@fortawesome/free-solid-svg-icons'
 import styles from './Footer.module.scss'
 import classNames from 'classnames/bind';
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles)
 
@@ -18,24 +19,16 @@ function Footer() {
                 </a>
                 <ul className="nav col-md-4 justify-content-end">
                     <li className="nav-item">
-                        <a href="#" className={`m-2 nav-link px-2 text-light navhover ${cx("navhover")}`}>
-                            Home
-                        </a>
+                        <Link className={`m-2 nav-link px-2 text-light navhover ${cx("navhover")}`} to="/home" ><p>Home</p></Link>
                     </li>
                     <li className="nav-item">
-                        <a href="#" className={`m-2 nav-link px-2 text-light navhover ${cx("navhover")}`}>
-                            About
-                        </a>
+                        <Link className={`m-2 nav-link px-2 text-light navhover ${cx("navhover")}`} to="/about" ><p>About</p></Link>
                     </li>
                     <li className="nav-item">
-                        <a href="#" className={`m-2 nav-link px-2 text-light navhover ${cx("navhover")}`}>
-                            Item
-                        </a>
+                        <Link className={`m-2 nav-link px-2 text-light navhover ${cx("navhover")}`} to="/item" ><p>Item</p></Link>
                     </li>
                     <li className="nav-item">
-                        <a href="#" className={`m-2 nav-link px-2 text-light navhover ${cx("navhover")}`}>
-                            Contact
-                        </a>
+                        <Link className={`m-2 nav-link px-2 text-light navhover ${cx("navhover")}`} to="/contact" ><p>Contact</p></Link>
                     </li>
 
                 </ul>
