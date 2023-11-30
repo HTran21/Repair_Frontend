@@ -75,7 +75,10 @@ function Home() {
 
             </div>
             <div className={`w-100 d-flex justify-content-center mb-5 mt-0 ${cx("divButton")}`}>
-                <button className={cx("buttonSeeMore")}>See more</button>
+                <Link to={'/item'} className="text-decoration-none">
+                    <button className={cx("buttonSeeMore")}>See more</button>
+                </Link>
+
                 <div className={cx("line")}></div>
             </div>
             {/* </motion.div> */}
@@ -85,8 +88,9 @@ function Home() {
                 <div className={`col-md-6 col-lg-6 ${cx("contentHomePage")}`}>
                     <h1 className={cx("titleIntro")}>Chúng tôi có thể sửa chữa mọi thứ một cách nhanh chóng</h1>
                     <h3 className={cx("desIntro")}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum harum aut cumque quam nulla porro saepe cum? Nisi, corporis porro?</h3>
-                    <button className={cx("btnContactRepair")}>Về chúng tôi</button>
-
+                    <Link to={'/about'} className="text-decoration-none">
+                        <button className={cx("btnContactRepair")}>Về chúng tôi</button>
+                    </Link>
                 </div>
                 <div className="col-md-6 col-lg-6 d-none d-lg-block">
                     <img className={`${cx("imgHomeRepair")}`} src="../../../img/img_page/illustration_contact.png" />
